@@ -13,18 +13,18 @@ import {
   Text,
   useColorModeValue,
   useDisclosure,
-} from '@chakra-ui/react';
-import { ConnectButton } from '@rainbow-me/rainbowkit';
-import { ColorModeButton } from 'components/elements';
-import { useRouter } from 'next/router';
-import { ReactNode, ReactText } from 'react';
-import { IconType } from 'react-icons';
-import { AiOutlineBank, AiOutlineSwap } from 'react-icons/ai';
-import { FiHome, FiMenu } from 'react-icons/fi';
-import { GiInjustice } from 'react-icons/gi';
-import { HiOutlineHandRaised } from 'react-icons/hi2';
-import { ImEnter, ImExit } from 'react-icons/im';
-import { MdOutlineSavings } from 'react-icons/md';
+} from "@chakra-ui/react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { ColorModeButton } from "components/elements";
+import { useRouter } from "next/router";
+import { ReactNode, ReactText } from "react";
+import { IconType } from "react-icons";
+import { AiOutlineBank, AiOutlineSwap } from "react-icons/ai";
+import { FiHome, FiMenu } from "react-icons/fi";
+import { GiInjustice } from "react-icons/gi";
+import { HiOutlineHandRaised } from "react-icons/hi2";
+import { ImEnter, ImExit } from "react-icons/im";
+import { MdOutlineSavings } from "react-icons/md";
 // import { useGlobalContext } from "../common/globalState";
 
 // interface LinkItemProps {
@@ -37,12 +37,19 @@ import { MdOutlineSavings } from 'react-icons/md';
 //   { name: 'About', icon: FiTrendingUp, href: '/about' },
 // ];
 
-export default function SidebarWithHeader({ children }: { children: ReactNode }) {
+export default function SidebarWithHeader({
+  children,
+}: {
+  children: ReactNode;
+}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
-      <SidebarContent onClose={() => onClose} display={{ base: 'none', md: 'block' }} />
+    <Box minH="100vh" bg={useColorModeValue("gray.100", "gray.900")}>
+      <SidebarContent
+        onClose={() => onClose}
+        display={{ base: "none", md: "block" }}
+      />
       <Drawer
         autoFocus={false}
         isOpen={isOpen}
@@ -70,35 +77,35 @@ interface SidebarProps extends BoxProps {
 }
 
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
-  const generalNav: [string, string, IconType][] = [['Dashboard', '/', FiHome]];
+  const generalNav: [string, string, IconType][] = [["Dashboard", "/", FiHome]];
   const defiNav: [string, string, IconType][] = [
-    ['Swap', '/swap', AiOutlineSwap],
-    ['Yield', '/yield', MdOutlineSavings],
-    ['Lend', '/lend', AiOutlineBank],
+    ["Swap", "/defi/swap", AiOutlineSwap],
+    ["Yield", "/yield", MdOutlineSavings],
+    ["Lend", "/lend", AiOutlineBank],
   ];
   const bridgeNav: [string, string, IconType][] = [
-    ['Bridge In', '/bridge-in', ImEnter],
-    ['Bridge Out', '/bridge-out', ImExit],
+    ["Bridge In", "/bridge-in", ImEnter],
+    ["Bridge Out", "/bridge-out", ImExit],
   ];
 
   const courtNav: [string, string, IconType][] = [
-    ['Latest Hearings', '/latest-hearings', GiInjustice],
-    ['Open Reversal Request', 'open-reversal-request', HiOutlineHandRaised],
+    ["Latest Hearings", "/latest-hearings", GiInjustice],
+    ["Open Reversal Request", "open-reversal-request", HiOutlineHandRaised],
   ];
   const navSections: [string, [string, string, IconType][]][] = [
-    ['General', generalNav],
-    ['Defi', defiNav],
-    ['Bridge', bridgeNav],
-    ['Court', courtNav],
+    ["General", generalNav],
+    ["Defi", defiNav],
+    ["Bridge", bridgeNav],
+    ["Court", courtNav],
   ];
 
   return (
     <Box
       transition="3s ease"
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       borderRight="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      w={{ base: 'full', md: '260px' }}
+      borderRightColor={useColorModeValue("gray.200", "gray.700")}
+      w={{ base: "full", md: "260px" }}
       pos="fixed"
       h="full"
       {...rest}
@@ -107,16 +114,16 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
           Novo OS
         </Text>
-        <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
+        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {navSections.map(([sectionName, section]) => (
         <div key={sectionName}>
           <Text
             style={{
-              margin: '30px 0 10px 30px',
-              fontSize: '12px',
-              textTransform: 'uppercase',
-              letterSpacing: '1px',
+              margin: "30px 0 10px 30px",
+              fontSize: "12px",
+              textTransform: "uppercase",
+              letterSpacing: "1px",
             }}
           >
             {sectionName}
@@ -140,15 +147,15 @@ interface NavItemProps extends FlexProps {
 const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
   const router = useRouter();
 
-  console.log(router.asPath);
+  // console.log(router.asPath);
   return (
     <Link
       href={href}
       style={{
-        textDecoration: 'none',
-        fontWeight: router.asPath === href ? 'bold' : 'normal',
+        textDecoration: "none",
+        fontWeight: router.asPath === href ? "bold" : "normal",
       }}
-      _focus={{ boxShadow: 'none' }}
+      _focus={{ boxShadow: "none" }}
     >
       <Flex
         align="center"
@@ -159,7 +166,7 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
         cursor="pointer"
         _hover={{
           //   bg: "cyan.400",
-          color: 'cyan.400',
+          color: "cyan.400",
         }}
         {...rest}
       >
@@ -168,7 +175,7 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
             mr="4"
             fontSize="16"
             _groupHover={{
-              color: 'cyan.400',
+              color: "cyan.400",
             }}
             as={icon}
           />
@@ -189,14 +196,14 @@ const Header = ({ onOpen, ...rest }: MobileProps) => {
       px={{ base: 4, md: 4 }}
       height="20"
       alignItems="center"
-      bg={useColorModeValue('white', 'gray.900')}
+      bg={useColorModeValue("white", "gray.900")}
       borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent={{ base: 'space-between', md: 'flex-end' }}
+      borderBottomColor={useColorModeValue("gray.200", "gray.700")}
+      justifyContent={{ base: "space-between", md: "flex-end" }}
       {...rest}
     >
       <IconButton
-        display={{ base: 'flex', md: 'none' }}
+        display={{ base: "flex", md: "none" }}
         onClick={onOpen}
         variant="outline"
         aria-label="open menu"
@@ -207,7 +214,7 @@ const Header = ({ onOpen, ...rest }: MobileProps) => {
         Novo OS
       </Text> */}
 
-      <HStack gap={'10px'}>
+      <HStack gap={"10px"}>
         <ConnectButton />
         <ColorModeButton />
       </HStack>

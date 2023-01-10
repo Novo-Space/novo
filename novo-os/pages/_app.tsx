@@ -1,8 +1,8 @@
-import '@rainbow-me/rainbowkit/styles.css';
+import "@rainbow-me/rainbowkit/styles.css";
 
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
-import { RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { configureChains } from '@wagmi/core';
+import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { configureChains } from "@wagmi/core";
 import {
   arbitrum,
   arbitrumGoerli,
@@ -20,11 +20,12 @@ import {
   polygon,
   polygonMumbai,
   sepolia,
-} from '@wagmi/core/chains';
-import { SessionProvider } from 'next-auth/react';
-import type { AppProps } from 'next/app';
-import { createClient, WagmiConfig } from 'wagmi';
-import { publicProvider } from 'wagmi/providers/public';
+} from "@wagmi/core/chains";
+import { Default } from "components/layouts/Default";
+import { SessionProvider } from "next-auth/react";
+import type { AppProps } from "next/app";
+import { createClient, WagmiConfig } from "wagmi";
+import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
@@ -45,7 +46,7 @@ const { chains, provider, webSocketProvider } = configureChains(
     polygonMumbai,
     sepolia,
   ],
-  [publicProvider()],
+  [publicProvider()]
 );
 
 const client = createClient({
@@ -56,7 +57,7 @@ const client = createClient({
 
 const config = {
   useSystemColorMode: false,
-  initialColorMode: 'light',
+  initialColorMode: "light",
 };
 
 const theme = extendTheme({ config });
@@ -67,7 +68,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
       <WagmiConfig client={client}>
         <RainbowKitProvider chains={chains}>
           <SessionProvider session={pageProps.session} refetchInterval={0}>
-            <Component {...pageProps} />
+            <Default>
+              <Component {...pageProps} />
+            </Default>
           </SessionProvider>
         </RainbowKitProvider>
       </WagmiConfig>

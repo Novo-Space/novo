@@ -4,7 +4,7 @@ const Home = () => {
   return (
     <VStack w={"full"}>
       <Heading size="md" marginBottom={6}>
-        Dashboard Home
+        Swap
       </Heading>
     </VStack>
   );
