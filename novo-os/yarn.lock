@@ -2421,11 +2421,6 @@
   resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-3.4.2-solc-0.7.tgz#38f4dbab672631034076ccdf2f3201fab1726635"
   integrity sha512-W6QmqgkADuFcTLzHL8vVoNBtkwjvQRpYIAom7KiUNoLKghyx3FgH0GBjt8NRvigV1ZmMOBllvE1By1C+bi8WpA==
 
-"@openzeppelin/contracts@4.7.0":
-  version "4.7.0"
-  resolved "https://registry.yarnpkg.com/@openzeppelin/contracts/-/contracts-4.7.0.tgz#3092d70ea60e3d1835466266b1d68ad47035a2d5"
-  integrity sha512-52Qb+A1DdOss8QvJrijYYPSf32GUg2pGaG/yCxtaA3cu4jduouTdg4XZSMLW9op54m1jH7J8hoajhHKOPsoJFw==
-
 "@panva/hkdf@^1.0.1":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.2.tgz#bab0f09d09de9fd83628220d496627681bc440d6"
@@ -2957,20 +2952,12 @@
   resolved "https://registry.yarnpkg.com/@uniswap/lib/-/lib-4.0.1-alpha.tgz#2881008e55f075344675b3bca93f020b028fbd02"
   integrity sha512-f6UIliwBbRsgVLxIaBANF6w09tYqc6Y/qXdsrbEmXHyFA7ILiKrIwRFXe1yOg8M3cksgVsO9N7yuL2DdCGQKBA==
 
-"@uniswap/permit2-sdk@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/permit2-sdk/-/permit2-sdk-1.2.0.tgz#ed86440a87a6c318169c8e6f161fc263ad040891"
-  integrity sha512-Ietv3FxN7+RCXcPSED/i/8b0a2GUZrMdyX05k3FsSztvYKyPFAMS/hBXojF0NZqYB1bHecqYc7Ej+7tV/rdYXg==
-  dependencies:
-    ethers "^5.3.1"
-    tiny-invariant "^1.3.1"
-
-"@uniswap/redux-multicall@^1.1.8":
+"@uniswap/redux-multicall@^1.1.1":
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/@uniswap/redux-multicall/-/redux-multicall-1.1.8.tgz#9cc5090305b10df68fb6162eb1ba7c2c762f5e7f"
   integrity sha512-LttOBVJuoRNC6N4MHsb5dF2GszLsj1ddPKKccEw1XOX17bGrFdm2A6GwKgES+v+Hj3lluDbQL6atcQtymP21iw==
 
-"@uniswap/router-sdk@^1.3.0", "@uniswap/router-sdk@^1.4.0":
+"@uniswap/router-sdk@^1.0.3", "@uniswap/router-sdk@^1.3.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@uniswap/router-sdk/-/router-sdk-1.4.0.tgz#0e8d49f37b36e74b6a70ec257ec0561bf1f249c3"
   integrity sha512-GyUX8x+hnwnh89DHyA/yKWUwhU3Eukx3B76vfvMMWfr++GA4CW6PzT5j4JgNZDrsBTOSJWxTdU5YbgOuwU2XGg==
@@ -2981,7 +2968,7 @@
     "@uniswap/v2-sdk" "^3.0.1"
     "@uniswap/v3-sdk" "^3.8.3"
 
-"@uniswap/sdk-core@^3.0.0-alpha.3", "@uniswap/sdk-core@^3.0.1", "@uniswap/sdk-core@^3.1.0":
+"@uniswap/sdk-core@^3.0.0-alpha.3", "@uniswap/sdk-core@^3.0.1":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@uniswap/sdk-core/-/sdk-core-3.1.1.tgz#3ab3376ce8df49fe46018d913c2a92d4736a3479"
   integrity sha512-afXn3R2ICf1mAZU+Ug8MmPbuXG7PYjoUYr0+sKLApyOPuhlxpwV4tR4ba8w4jSXoFhqOWxZ9qh44isWoScK96w==
@@ -2993,7 +2980,7 @@
     tiny-invariant "^1.1.0"
     toformat "^2.0.0"
 
-"@uniswap/smart-order-router@^2.10.0":
+"@uniswap/smart-order-router@^2.5.26":
   version "2.10.2"
   resolved "https://registry.yarnpkg.com/@uniswap/smart-order-router/-/smart-order-router-2.10.2.tgz#c6aabe890d096f4c4727011ecfe6f37a401f99a5"
   integrity sha512-Nq/O5p5vUxcGL2PpdB4/mjq0cgfpisPA8Q29dPs3+dgYJ3PNgIasCoENMHgauTvCFCNyql+GwanfeW/DtEcd5A==
@@ -3044,29 +3031,6 @@
   version "1.0.0-beta.31"
   resolved "https://registry.yarnpkg.com/@uniswap/token-lists/-/token-lists-1.0.0-beta.31.tgz#ff3852bd505ec7b4c276625c762ea79a93a919ec"
   integrity sha512-BQVoelKCRf64IToPEs1wxiXOnhr/ukwPOF78XG11PrTAOL4F8umjYKFb8ZPv1/dIJsPaC7GhLSriEqyp94SasQ==
-
-"@uniswap/universal-router-sdk@^1.3.0":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@uniswap/universal-router-sdk/-/universal-router-sdk-1.3.1.tgz#2bfc4f5f3195813e2cc0511675da8ebaa199da13"
-  integrity sha512-cpih1WoYN0JLG+Fewj5koMxW9ywoWnCB6HHqVsFfNzmYFw5N6GaaQmcF5J2G9K7FtN2NDYPUMDHuPSQ/QkH7Zg==
-  dependencies:
-    "@uniswap/permit2-sdk" "^1.2.0"
-    "@uniswap/router-sdk" "^1.4.0"
-    "@uniswap/sdk-core" "^3.1.0"
-    "@uniswap/universal-router" "1.2.1"
-    "@uniswap/v2-sdk" "^3.0.1"
-    "@uniswap/v3-sdk" "^3.9.0"
-    bignumber.js "^9.0.2"
-    ethers "^5.3.1"
-
-"@uniswap/universal-router@1.2.1":
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/@uniswap/universal-router/-/universal-router-1.2.1.tgz#5fe4aa21d6bc89314d99f26407f28154f8e16f42"
-  integrity sha512-F3S1wKylncuvIG2qwC1ciXXc1z1QmKsalo4p6H2A90LSRylEEhNp7ITxs7qCcnfRh+ZNkGJ0yQ0zmuVJSBezOQ==
-  dependencies:
-    "@openzeppelin/contracts" "4.7.0"
-    "@uniswap/v2-core" "1.0.1"
-    "@uniswap/v3-core" "1.0.0"
 
 "@uniswap/v2-core@1.0.1":
   version "1.0.1"
@@ -3124,7 +3088,7 @@
     "@uniswap/v3-core" "1.0.0"
     base64-sol "1.0.1"
 
-"@uniswap/v3-sdk@^3.7.0", "@uniswap/v3-sdk@^3.8.2", "@uniswap/v3-sdk@^3.8.3", "@uniswap/v3-sdk@^3.9.0":
+"@uniswap/v3-sdk@^3.7.0", "@uniswap/v3-sdk@^3.8.2", "@uniswap/v3-sdk@^3.8.3":
   version "3.9.0"
   resolved "https://registry.yarnpkg.com/@uniswap/v3-sdk/-/v3-sdk-3.9.0.tgz#de93fa19f89c29d460996aa4d0b4bb6531641105"
   integrity sha512-LuoF3UcY1DxSAQKJ3E4/1Eq4HaNp+x+7q9mvbpiu+/PBj+O1DjLforAMrKxu+RsA0aarmZtz7yBnAPy+akgfgQ==
@@ -3147,23 +3111,21 @@
     "@uniswap/v3-core" "1.0.0"
     "@uniswap/v3-periphery" "^1.0.1"
 
-"@uniswap/widgets@^2.24.0":
-  version "2.24.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/widgets/-/widgets-2.24.0.tgz#bb4d68ce29fc6e2ed2444a64d7b7e3f704ae4a39"
-  integrity sha512-6pUiFxdLyviZPdzxXQMEogWPDgmlSgkH2Ter2Wq1ndqireD632lwLMymYgYTuoDgfr+LvdHHZmYdBc5JVFj5xg==
+"@uniswap/widgets@2.9":
+  version "2.9.2"
+  resolved "https://registry.yarnpkg.com/@uniswap/widgets/-/widgets-2.9.2.tgz#3ab5e84fc61fb62c3635b52526a67febfcdbb081"
+  integrity sha512-4NNckJJ3jaOubIwU0hzfcPbdjNzlO6n8WIIcAScyc+WGpb1S9iBUjJ0EFMCEUhP/zsNK0+I5qv1ytjPF4XZTog==
   dependencies:
     "@babel/runtime" ">=7.17.0"
     "@fontsource/ibm-plex-mono" "^4.5.1"
     "@fontsource/inter" "^4.5.1"
     "@popperjs/core" "^2.4.4"
     "@reduxjs/toolkit" "^1.6.1"
-    "@uniswap/permit2-sdk" "^1.2.0"
-    "@uniswap/redux-multicall" "^1.1.8"
-    "@uniswap/router-sdk" "^1.3.0"
+    "@uniswap/redux-multicall" "^1.1.1"
+    "@uniswap/router-sdk" "^1.0.3"
     "@uniswap/sdk-core" "^3.0.1"
-    "@uniswap/smart-order-router" "^2.10.0"
+    "@uniswap/smart-order-router" "^2.5.26"
     "@uniswap/token-lists" "^1.0.0-beta.30"
-    "@uniswap/universal-router-sdk" "^1.3.0"
     "@uniswap/v2-sdk" "^3.0.1"
     "@uniswap/v3-sdk" "^3.8.2"
     "@web3-react/core" "8.0.35-beta.0"
@@ -3173,11 +3135,10 @@
     "@web3-react/network" "8.0.27-beta.0"
     "@web3-react/types" "8.0.20-beta.0"
     "@web3-react/url" "8.0.25-beta.0"
-    "@web3-react/walletconnect" "8.0.36-beta.0"
-    ajv "^8.11.0"
-    ajv-formats "^2.1.1"
+    "@web3-react/walletconnect" "8.0.35-beta.0"
+    ajv "^6.12.3"
     cids "^1.0.0"
-    ethers "^5.6.1"
+    ethers "^5.1.4"
     immer "^9.0.6"
     jotai "^1.3.7"
     jsbi "^3.1.4"
@@ -3601,10 +3562,10 @@
     "@ethersproject/providers" "^5"
     "@web3-react/types" "^8.0.20-beta.0"
 
-"@web3-react/walletconnect@8.0.36-beta.0":
-  version "8.0.36-beta.0"
-  resolved "https://registry.yarnpkg.com/@web3-react/walletconnect/-/walletconnect-8.0.36-beta.0.tgz#a0dbb5286b9011c6c221cc143322822a7387978f"
-  integrity sha512-u+yNWCm8nz5pZn8SyU5+9pI5hakKcfhUF1TYwj7HVTTMHdMlLXhk19YyaycsFkgbX9zWzouItwxXF8obGt+rCg==
+"@web3-react/walletconnect@8.0.35-beta.0":
+  version "8.0.35-beta.0"
+  resolved "https://registry.yarnpkg.com/@web3-react/walletconnect/-/walletconnect-8.0.35-beta.0.tgz#49c6c77447d58bfb295f28fa87c8fbfeec95cff5"
+  integrity sha512-fUrqcnwAr5oecZ6VUE/7+RSVURrohbAgWMLKYxd8Zo47AtTPzgJ1t5Lydh/EX4xJPLhfK1LqX5YgMwiys3DvhQ==
   dependencies:
     "@web3-react/types" "^8.0.20-beta.0"
     eventemitter3 "^4.0.7"
@@ -3693,14 +3654,7 @@ ahocorasick@1.0.2:
   resolved "https://registry.yarnpkg.com/ahocorasick/-/ahocorasick-1.0.2.tgz#9eee93aef9d02bfb476d9b648d9b7a40ef2fd500"
   integrity sha512-hCOfMzbFx5IDutmWLAt6MZwOUjIfSM9G9FyVxytmE4Rs/5YDPWQrD/+IR1w+FweD9H2oOZEnv36TmkjhNURBVA==
 
-ajv-formats@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/ajv-formats/-/ajv-formats-2.1.1.tgz#6e669400659eb74973bbf2e33327180a0996b520"
-  integrity sha512-Wx0Kx52hxE7C18hkMEggYlEifqWZtYaRgouJor+WMdPnQyEK13vgEWyVNup7SoeeoLMsr4kf5h6dOW11I15MUA==
-  dependencies:
-    ajv "^8.0.0"
-
-ajv@^6.10.0, ajv@^6.12.4:
+ajv@^6.10.0, ajv@^6.12.3, ajv@^6.12.4:
   version "6.12.6"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.12.6.tgz#baf5a62e802b07d977034586f8c3baf5adf26df4"
   integrity sha512-j3fVLgvTo527anyYyJOGTYJbG+vnnQYvE0m5mmkc1TK+nxAppkCLMIL0aZ4dblVCNoGShhm+kzE4ZUykBoMg4g==
@@ -3708,16 +3662,6 @@ ajv@^6.10.0, ajv@^6.12.4:
     fast-deep-equal "^3.1.1"
     fast-json-stable-stringify "^2.0.0"
     json-schema-traverse "^0.4.1"
-    uri-js "^4.2.2"
-
-ajv@^8.0.0, ajv@^8.11.0:
-  version "8.12.0"
-  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.12.0.tgz#d1a0527323e22f53562c567c00991577dfbe19d1"
-  integrity sha512-sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA==
-  dependencies:
-    fast-deep-equal "^3.1.1"
-    json-schema-traverse "^1.0.0"
-    require-from-string "^2.0.2"
     uri-js "^4.2.2"
 
 ansi-escapes@^4.3.0:
@@ -4036,11 +3980,6 @@ bigint-buffer@^1.1.5:
   integrity sha512-trfYco6AoZ+rKhKnxA0hgX0HAbVP/s808/EuDSe2JDzUnCp/xAsli35Orvk67UrTEcwuxZqYZDmfA2RXJgxVvA==
   dependencies:
     bindings "^1.3.0"
-
-bignumber.js@^9.0.2:
-  version "9.1.1"
-  resolved "https://registry.yarnpkg.com/bignumber.js/-/bignumber.js-9.1.1.tgz#c4df7dc496bd849d4c9464344c1aa74228b4dac6"
-  integrity sha512-pHm4LsMJ6lzgNGVfZHjMoO8sdoRhOzOH4MLmY65Jg70bpxCKu5iOHNJyfF6OyvYw7t8Fpf35RuzUyqnQsj8Vig==
 
 binary-extensions@^2.0.0:
   version "2.2.0"
@@ -5330,7 +5269,7 @@ ethereumjs-util@^7.1.0:
     ethereum-cryptography "^0.1.3"
     rlp "^2.2.4"
 
-ethers@^5.3.1, ethers@^5.6.1, ethers@^5.7.1:
+ethers@^5.1.4, ethers@^5.6.1, ethers@^5.7.1:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.7.2.tgz#3a7deeabbb8c030d4126b24f84e525466145872e"
   integrity sha512-wswUsmWo1aOK8rR7DIKiWSw9DbLWe6x98Jrn8wcTflTVvaXhAMaB5zGAXy0GYQEQp9iO1iSHWVyARQm11zUtyg==
@@ -6350,6 +6289,11 @@ jose@^4.9.3:
   resolved "https://registry.yarnpkg.com/jose/-/jose-4.11.1.tgz#8f7443549befe5bddcf4bae664a9cbc1a62da4fa"
   integrity sha512-YRv4Tk/Wlug8qicwqFNFVEZSdbROCHRAC6qu/i0dyNKr5JQdoa2pIGoS04lLO/jXQX7Z9omoNewYIVIxqZBd9Q==
 
+jotai-immer@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/jotai-immer/-/jotai-immer-0.1.0.tgz#cfdec8909a5f6a985fdf026da8c182057dbf66d6"
+  integrity sha512-TwiPKgrf/V0tSh2CSEEilhhCHm0LSgIrZmIXvQRp7+aKT+cATNFUBJeSBUb42wMnTh43DoveGSUiTN1oyTv6Wg==
+
 jotai@^1.3.7:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/jotai/-/jotai-1.13.0.tgz#c24f9fe4f18f58a348f042411509ef402b26c045"
@@ -6417,11 +6361,6 @@ json-schema-traverse@^0.4.1:
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-0.4.1.tgz#69f6a87d9513ab8bb8fe63bdb0979c448e684660"
   integrity sha512-xbbCH5dCYU5T8LcEhhuh7HJ88HXuW3qsI3Y0zOZFKfZEHcpWiHU/Jxzk629Brsab/mMiHQti9wMP+845RPe3Vg==
-
-json-schema-traverse@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/json-schema-traverse/-/json-schema-traverse-1.0.0.tgz#ae7bcb3656ab77a73ba5c49bf654f38e6b6860e2"
-  integrity sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==
 
 json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
@@ -7533,7 +7472,7 @@ react-popper@^2.2.3:
     react-fast-compare "^3.0.1"
     warning "^4.0.2"
 
-react-redux@>=7.2.2, react-redux@^8.0.5:
+react-redux@>=7.2.2:
   version "8.0.5"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.0.5.tgz#e5fb8331993a019b8aaf2e167a93d10af469c7bd"
   integrity sha512-Q2f6fCKxPFpkXt1qNRZdEDLlScsDWyrgSj0mliK59qU6W5gvBiKkdMEG2lJzhd1rCctf0hb6EtePPLZ2e0m1uw==
@@ -7685,11 +7624,6 @@ require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
   integrity sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==
-
-require-from-string@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/require-from-string/-/require-from-string-2.0.2.tgz#89a7fdd938261267318eafe14f9c32e598c36909"
-  integrity sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==
 
 require-main-filename@^2.0.0:
   version "2.0.0"
@@ -8293,7 +8227,7 @@ tiny-invariant@^1.0.6:
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.2.0.tgz#a1141f86b672a9148c72e978a19a73b9b94a15a9"
   integrity sha512-1Uhn/aqw5C6RI4KejVeTg6mIS7IqxnLJ8Mv2tV5rTc0qWobay7pDUz6Wi392Cnc8ak1H0F2cjoRzb2/AW4+Fvg==
 
-tiny-invariant@^1.1.0, tiny-invariant@^1.2.0, tiny-invariant@^1.3.1:
+tiny-invariant@^1.1.0, tiny-invariant@^1.2.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/tiny-invariant/-/tiny-invariant-1.3.1.tgz#8560808c916ef02ecfd55e66090df23a4b7aa642"
   integrity sha512-AD5ih2NlSssTCwsMznbvwMZpJ1cbhkGd2uueNxzv2jDlEeZdU04JQfRnggJQ8DrcVBGjAsCKwFBbDlVNtEMlzw==
