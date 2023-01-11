@@ -16,6 +16,8 @@
     "@chakra-ui/react": "^2.4.3",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@fontsource/open-sans": "^4.5.13",
+    "@fontsource/raleway": "^4.5.11",
     "@moralisweb3/next": "^2.9.0",
     "@rainbow-me/rainbowkit": "^0.8.1",
     "@uniswap/widgets": "2.9",

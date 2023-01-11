@@ -1,4 +1,4 @@
-import { Heading, VStack } from "@chakra-ui/react";
+import { Container, Text, VStack } from "@chakra-ui/react";
 import { SwapWidget } from "@uniswap/widgets";
 import "@uniswap/widgets/fonts.css";
 
@@ -34,14 +34,18 @@ const MY_TOKEN_LIST = [
 
 const Home = () => {
   return (
-    <VStack w={"full"}>
-      <Heading size="md" marginBottom={6}>
-        Swap
-      </Heading>
-      <div className="Uniswap">
-        <SwapWidget tokenList={MY_TOKEN_LIST} />
-      </div>
-    </VStack>
+    <Container maxW="container.lg" p={3} marginTop={100} as="main" minH="70vh">
+      <VStack w={"full"}>
+        <div>
+          <Text marginBottom={6} style={{ fontSize: "30px" }}>
+            <b>Novo</b> Swap
+          </Text>
+          <div className="Uniswap">
+            <SwapWidget tokenList={MY_TOKEN_LIST} />
+          </div>
+        </div>
+      </VStack>
+    </Container>
   );
 };
 

@@ -1,3 +1,4 @@
+import { ExternalLinkIcon } from "@chakra-ui/icons";
 import {
   Box,
   BoxProps,
@@ -65,9 +66,7 @@ export default function SidebarWithHeader({
       </Drawer>
       {/* mobilenav */}
       <Header onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
-        {children}
-      </Box>
+      <Box ml={{ base: 0, md: 60 }}>{children}</Box>
     </Box>
   );
 }
@@ -80,17 +79,25 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const generalNav: [string, string, IconType][] = [["Dashboard", "/", FiHome]];
   const defiNav: [string, string, IconType][] = [
     ["Swap", "/defi/swap", AiOutlineSwap],
-    ["Yield", "/yield", MdOutlineSavings],
-    ["Lend", "/lend", AiOutlineBank],
+    ["Yield", "/defi/yield", MdOutlineSavings],
+    ["Markets", "/defi/markets", AiOutlineBank],
   ];
   const bridgeNav: [string, string, IconType][] = [
-    ["Bridge In", "/bridge-in", ImEnter],
-    ["Bridge Out", "/bridge-out", ImExit],
+    ["Bridge In", "/bridge/bridge-in", ImEnter],
+    ["Bridge Out", "/bridge/bridge-out", ImExit],
   ];
 
   const courtNav: [string, string, IconType][] = [
-    ["Latest Hearings", "/latest-hearings", GiInjustice],
-    ["Open Reversal Request", "open-reversal-request", HiOutlineHandRaised],
+    [
+      "Latest Reversal Hearings",
+      "https://novaspace.discourse.group/c/reversal-requests/5",
+      GiInjustice,
+    ],
+    [
+      "Open Reversal Request",
+      "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
+      HiOutlineHandRaised,
+    ],
   ];
   const navSections: [string, [string, string, IconType][]][] = [
     ["General", generalNav],
@@ -147,10 +154,12 @@ interface NavItemProps extends FlexProps {
 const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
   const router = useRouter();
 
+  const isExternalLink = href.indexOf("https") != -1;
   // console.log(router.asPath);
   return (
     <Link
       href={href}
+      isExternal={isExternalLink}
       style={{
         textDecoration: "none",
         fontWeight: router.asPath === href ? "bold" : "normal",
@@ -180,7 +189,10 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
             as={icon}
           />
         )}
-        {children}
+        <>
+          {children}
+          {isExternalLink && <ExternalLinkIcon mx="6px" />}
+        </>
       </Flex>
     </Link>
   );

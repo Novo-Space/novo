@@ -1,3 +1,5 @@
+import "@fontsource/open-sans/700.css";
+import "@fontsource/raleway/400.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
@@ -58,6 +60,10 @@ const client = createClient({
 const config = {
   useSystemColorMode: false,
   initialColorMode: "light",
+  fonts: {
+    heading: `'Open Sans', sans-serif`,
+    body: `'Raleway', sans-serif`,
+  },
 };
 
 const theme = extendTheme({ config });
