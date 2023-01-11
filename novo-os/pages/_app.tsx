@@ -5,7 +5,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains } from "@wagmi/core";
-import { foundry, goerli, mainnet } from "@wagmi/core/chains";
+import { goerli } from "@wagmi/core/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 
 import { Default } from "components/layouts/Default";
@@ -15,26 +15,22 @@ import Head from "next/head";
 import { createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 
+export const hardhatMainnet = {
+  id: 1,
+  name: "Ethereum",
+  network: "homestead",
+  nativeCurrency: {
+    decimals: 18,
+    name: "Ether",
+    symbol: "ETH",
+  },
+  rpcUrls: {
+    default: { http: ["http://127.0.0.1:8545"] },
+  },
+};
+
 const { chains, provider, webSocketProvider } = configureChains(
-  [
-    // arbitrum,
-    // arbitrumGoerli,
-    // avalanche,
-    // avalancheFuji,
-    // bsc,
-    // bscTestnet,
-    // fantom,
-    // fantomTestnet,
-    foundry,
-    goerli,
-    // hardhat,
-    mainnet,
-    // optimism,
-    // optimismGoerli,
-    // polygon,
-    // polygonMumbai,
-    // sepolia,
-  ],
+  [goerli, hardhatMainnet],
   [
     alchemyProvider({ apiKey: "nqrcMq4YFgwPJZYr-Md4hiuIUD94HHOy" }),
     publicProvider(),
@@ -49,7 +45,7 @@ const { connectors } = getDefaultWallets({
 const client = createClient({
   provider,
   connectors,
-  // webSocketProvider,
+  webSocketProvider,
   autoConnect: true,
 });
 
