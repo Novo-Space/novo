@@ -12,17 +12,20 @@ import {
   Tr,
 } from "@chakra-ui/react";
 
+// import { BsWallet2 } from "react-icons/bs";
+import { RiWallet3Line } from "react-icons/ri";
+
 const Home = () => {
   return (
     <Container maxW="container.lg" p={3} marginTop={100} as="main" minH="70vh">
-      <Text marginBottom={12} style={{ fontSize: "30px" }}>
+      <Text marginBottom={8} style={{ fontSize: "30px" }}>
         <b>Novo</b> Dashboard
       </Text>
 
       <Card
         style={{
           backgroundColor: "white",
-          borderRadius: "30px",
+          borderRadius: "0px",
           width: "300px",
         }}
         variant="outlined"
@@ -42,14 +45,21 @@ const Home = () => {
         style={{
           backgroundColor: "white",
           marginTop: "40px",
-          borderRadius: "30px",
+          borderRadius: "0px",
         }}
       >
+        <div
+          style={{
+            padding: "16px 20px",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
+          <RiWallet3Line style={{ fontSize: "20px", marginRight: "6px" }} />
+          <Text style={{ fontWeight: "bold" }}>Wallet</Text>
+        </div>
         <Table variant="simple">
           <Thead>
-            <Text style={{ padding: "16px 20px", fontWeight: "bold" }}>
-              Wallet
-            </Text>
             <Tr style={{ borderTop: "1px solid rgb(237, 242, 247)" }}>
               <Th>Token</Th>
               <Th isNumeric>RBalance</Th>
@@ -62,7 +72,7 @@ const Home = () => {
           </Thead>
           <Tbody>
             <Tr>
-              <Td>Eth</Td>
+              <Td>N-Eth</Td>
               <Td isNumeric>23.12</Td>
               <Td isNumeric>15.20</Td>
               <Td isNumeric>0</Td>
@@ -71,7 +81,7 @@ const Home = () => {
               <Td isNumeric>$33979.92</Td>
             </Tr>
             <Tr>
-              <Td>Dai</Td>
+              <Td>N-Dai</Td>
               <Td isNumeric>13.12</Td>
               <Td isNumeric>0</Td>
               <Td isNumeric>0</Td>
@@ -80,7 +90,7 @@ const Home = () => {
               <Td isNumeric>$13.12</Td>
             </Tr>
             <Tr>
-              <Td>USDC</Td>
+              <Td>N-USDC</Td>
               <Td isNumeric>7.23</Td>
               <Td isNumeric>0</Td>
               <Td isNumeric>0</Td>

@@ -3,57 +3,53 @@ import "@fontsource/raleway/400.css";
 import "@rainbow-me/rainbowkit/styles.css";
 
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
+import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains } from "@wagmi/core";
-import {
-  arbitrum,
-  arbitrumGoerli,
-  avalanche,
-  avalancheFuji,
-  bsc,
-  bscTestnet,
-  fantom,
-  fantomTestnet,
-  foundry,
-  goerli,
-  mainnet,
-  optimism,
-  optimismGoerli,
-  polygon,
-  polygonMumbai,
-  sepolia,
-} from "@wagmi/core/chains";
+import { foundry, goerli, mainnet } from "@wagmi/core/chains";
+import { alchemyProvider } from "wagmi/providers/alchemy";
+
 import { Default } from "components/layouts/Default";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import { createClient, WagmiConfig } from "wagmi";
 import { publicProvider } from "wagmi/providers/public";
 
 const { chains, provider, webSocketProvider } = configureChains(
   [
-    arbitrum,
-    arbitrumGoerli,
-    avalanche,
-    avalancheFuji,
-    bsc,
-    bscTestnet,
-    fantom,
-    fantomTestnet,
+    // arbitrum,
+    // arbitrumGoerli,
+    // avalanche,
+    // avalancheFuji,
+    // bsc,
+    // bscTestnet,
+    // fantom,
+    // fantomTestnet,
     foundry,
     goerli,
+    // hardhat,
     mainnet,
-    optimism,
-    optimismGoerli,
-    polygon,
-    polygonMumbai,
-    sepolia,
+    // optimism,
+    // optimismGoerli,
+    // polygon,
+    // polygonMumbai,
+    // sepolia,
   ],
-  [publicProvider()]
+  [
+    alchemyProvider({ apiKey: "nqrcMq4YFgwPJZYr-Md4hiuIUD94HHOy" }),
+    publicProvider(),
+  ]
 );
+
+const { connectors } = getDefaultWallets({
+  appName: "Novo OS",
+  chains,
+});
 
 const client = createClient({
   provider,
-  webSocketProvider,
+  connectors,
+  // webSocketProvider,
   autoConnect: true,
 });
 
@@ -75,6 +71,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <RainbowKitProvider chains={chains}>
           <SessionProvider session={pageProps.session} refetchInterval={0}>
             <Default>
+              <Head>
+                <title>Novo OS</title>
+              </Head>
               <Component {...pageProps} />
             </Default>
           </SessionProvider>
