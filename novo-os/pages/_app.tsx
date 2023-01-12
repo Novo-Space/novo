@@ -5,20 +5,19 @@ import "@rainbow-me/rainbowkit/styles.css";
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains } from "@wagmi/core";
-import { goerli } from "@wagmi/core/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
 
 import { Default } from "components/layouts/Default";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import { createClient, WagmiConfig } from "wagmi";
-import { publicProvider } from "wagmi/providers/public";
+import { goerli } from "wagmi/chains";
+import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 export const hardhatMainnet = {
   id: 1,
-  name: "Ethereum",
-  network: "homestead",
+  name: "Hardhat Mainnet",
+  network: "hardhat",
   nativeCurrency: {
     decimals: 18,
     name: "Ether",
@@ -30,10 +29,15 @@ export const hardhatMainnet = {
 };
 
 const { chains, provider, webSocketProvider } = configureChains(
-  [goerli, hardhatMainnet],
+  [hardhatMainnet, goerli],
   [
-    alchemyProvider({ apiKey: "nqrcMq4YFgwPJZYr-Md4hiuIUD94HHOy" }),
-    publicProvider(),
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: "http://127.0.0.1:8545",
+      }),
+    }),
+    // alchemyProvider({ apiKey: "nqrcMq4YFgwPJZYr-Md4hiuIUD94HHOy" }),
+    // publicProvider(),
   ]
 );
 
