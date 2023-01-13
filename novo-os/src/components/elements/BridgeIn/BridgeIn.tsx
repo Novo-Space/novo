@@ -10,12 +10,14 @@ import {
   Select,
   Stack,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
 import { ContractName } from "types";
 import { useDebounce } from "use-debounce";
 import { contractAddresses } from "utils/contractAddresses";
+import { adjustAmountByDecimal, parseBigTokenToNumber } from "utils/helpers";
 import {
   useAccount,
   useContractRead,
@@ -28,61 +30,79 @@ import bridge from "../../../abis/bridge.json";
 import erc20 from "../../../abis/erc20.json";
 
 const BridgeIn = () => {
+  const toast = useToast();
   const { address } = useAccount();
 
-  const [asset, setAsset] = useState("weth");
+  const [asset, setAsset] = useState("usdc");
   const assetAddress = contractAddresses[asset as ContractName];
   const [debouncedAssetAddress] = useDebounce(assetAddress, 500);
 
   const [amount, setAmount] = useState("0");
   const [debouncedAmount] = useDebounce(amount, 500);
+  const decimalAdjustedDebouncedAmount = adjustAmountByDecimal(
+    parseInt(debouncedAmount),
+    contractAddresses.tokenInfo[debouncedAssetAddress].decimals
+  );
 
   const { config: approveConfig } = usePrepareContractWrite({
     address: debouncedAssetAddress,
     abi: erc20.abi,
     functionName: "approve",
-    args: [contractAddresses.novoBridge, parseInt(debouncedAmount)],
+    args: [contractAddresses.novoBridge, decimalAdjustedDebouncedAmount],
   });
 
-  const { write: writeApprove } = useContractWrite(approveConfig);
+  const { write: writeApprove } = useContractWrite({
+    ...approveConfig,
+    onSuccess() {
+      // Bridge the token
+      console.log(`WRITE: ${write}`);
+      write?.();
+    },
+  });
 
   const {
-    config,
+    write,
+    data,
     error: prepareError,
     isError: isPrepareError,
-  } = usePrepareContractWrite({
+  } = useContractWrite({
+    mode: "recklesslyUnprepared",
     address: contractAddresses.novoBridge,
     abi: bridge.abi,
     functionName: "BridgeIn",
-    args: [debouncedAssetAddress, debouncedAmount],
-    // Revisit what this is for later.
-    //     enabled:
+    args: [debouncedAssetAddress, decimalAdjustedDebouncedAmount],
+    onSuccess(data, variables, context) {
+      toast({
+        title: "Bridge in successful!",
+        description: "You successfully bridged funds into Novo Space",
+        status: "success",
+        duration: 5000,
+        isClosable: true,
+      });
+    },
   });
 
-  const { data, error, isError, write } = useContractWrite(config);
+  //   const { data, error, isError, write } = useContractWrite(config);
 
-  if (isPrepareError || isError) {
-    console.log((prepareError || error)?.message);
-  }
+  //   if (isPrepareError || isError) {
+  //     console.log("WRITE ERROR", (prepareError || error)?.message);
+  //   }
+
+  //   console.log(`Is success: ${isSuccess}`);
+
+  const bridgeInSteps = async () => {
+    // Approve token for bridging
+    console.log("WRITE APPROVE");
+    writeApprove?.();
+  };
 
   const { isLoading, isSuccess } = useWaitForTransaction({
     hash: data?.hash,
   });
 
-  console.log(`Is success: ${isSuccess}`);
-
   if (isSuccess) {
-    console.log(`Transaction success! Hash: ${data?.hash}`);
+    console.log(`Bridge in success! Hash: ${data?.hash}`);
   }
-
-  const bridgeInSteps = () => {
-    // Approve token for bridging
-    console.log("WRITE APPROVE");
-    writeApprove?.();
-    // Bridge the token
-    console.log(`WRITE: ${write}`);
-    write?.();
-  };
 
   // ALLOWANCE INFO
   const {
@@ -110,7 +130,7 @@ const BridgeIn = () => {
     isLoading: balanceIsLoading,
     error: balanceError,
   } = useContractRead({
-    address: contractAddresses.usdc,
+    address: debouncedAssetAddress,
     abi: erc20.abi,
     functionName: "balanceOf",
     args: [address],
@@ -119,44 +139,6 @@ const BridgeIn = () => {
 
   console.log(
     `Contract: ${contractAddresses.usdc}, address: ${address}, balance data: ${balanceData}, ${balanceIsError}, ${balanceIsLoading}, ${balanceError})
-    }`
-  );
-
-  // REV Address
-  const {
-    data: revData,
-    isError: revIsError,
-    isLoading: revIsLoading,
-    error: revError,
-  } = useContractRead({
-    address: contractAddresses.novoBridge,
-    abi: bridge.abi,
-    functionName: "getRev",
-    args: [contractAddresses.usdc],
-    watch: true,
-  });
-
-  console.log(
-    `Contract: ${contractAddresses.usdc}, address: ${address}, rev data: ${revData}, ${revIsError}, ${revIsLoading}, ${revError})
-    }`
-  );
-
-  // nusdc Address
-  const {
-    data: nusdcData,
-    isError: nusdcIsError,
-    isLoading: nusdcIsLoading,
-    error: nusdcError,
-  } = useContractRead({
-    address: contractAddresses.nusdc,
-    abi: erc20.abi,
-    functionName: "balanceOf",
-    args: [address],
-    watch: true,
-  });
-
-  console.log(
-    `Contract: ${contractAddresses.usdc}, address: ${address}, nusdc data: ${nusdcData}, ${nusdcIsError}, ${nusdcIsLoading}, ${nusdcError})
     }`
   );
 
@@ -178,11 +160,16 @@ const BridgeIn = () => {
             value={asset as string}
             onChange={(event) => setAsset(event.target.value)}
           >
-            <option value="weth">Weth to N-Eth</option>
             <option value="usdc">USDC to N-USDC</option>
-            <option value="dai">DAI to N-DAI</option>
+            <option value="usdt">USDT to N-USDT</option>
           </Select>
-          <Text>Amount</Text>
+          <Text>
+            Amount
+            {` (Your balance: $${parseBigTokenToNumber(
+              balanceData as any,
+              contractAddresses.tokenInfo[debouncedAssetAddress]
+            )})`}
+          </Text>
           <NumberInput value={amount} onChange={(value) => setAmount(value)}>
             <NumberInputField />
           </NumberInput>

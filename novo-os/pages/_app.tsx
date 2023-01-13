@@ -6,6 +6,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import { getDefaultWallets, RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { configureChains } from "@wagmi/core";
 
+import ClientOnly from "components/layouts/ClientOnly";
 import { Default } from "components/layouts/Default";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
@@ -74,7 +75,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
               <Head>
                 <title>Novo OS</title>
               </Head>
-              <Component {...pageProps} />
+              <ClientOnly>
+                <Component {...pageProps} />
+              </ClientOnly>
             </Default>
           </SessionProvider>
         </RainbowKitProvider>

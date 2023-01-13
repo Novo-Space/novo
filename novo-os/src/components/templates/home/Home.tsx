@@ -5,21 +5,43 @@ import {
   Table,
   TableContainer,
   Tbody,
+  Td,
   Text,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import { BigNumberish, ethers } from "ethers";
+import { BigNumber } from "ethers";
 
 // import { BsWallet2 } from "react-icons/bs";
 // import "erc20";
 import { RiWallet3Line } from "react-icons/ri";
 import { contractAddresses } from "utils/contractAddresses";
+import { parseBigTokenToNumber } from "utils/helpers";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import erc20 from "../../../abis/erc20.json";
 
 const tokenList = [
+  // ERC-20 tokens
+  {
+    name: "USD Coin",
+    address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+    symbol: "USDC",
+    decimals: 6,
+    chainId: 1,
+    logoURI:
+      "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+  },
+  {
+    name: "Tether USD",
+    address: "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+    symbol: "USDT",
+    decimals: 6,
+    chainId: 1,
+    logoURI:
+      "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
+  },
+  // Novo tokens
   {
     name: "N-USD Coin",
     address: "0x6c0e9F485aAb53226c422aCA0Cdd709318dE339f",
@@ -48,11 +70,6 @@ const Home = () => {
     watch: true,
   });
 
-  // console.log(
-  //   `Contract: ${contractAddresses.usdc}, address: ${address}, balance data: ${balanceData}, ${balanceIsError}, ${balanceIsLoading}, ${balanceError})
-  //   }`
-  // );
-
   // Get balances
   const contracts = tokenList.map((token: any) => ({
     address: token.address,
@@ -61,38 +78,20 @@ const Home = () => {
     args: [address],
   }));
 
-  // const data = console.log("CONTRACTS");
-  console.log(contracts);
-  console.log(contractAddresses.tokenList);
+  const { data, isError, isLoading, error, status } = useContractReads({
+    contracts: contracts,
+    enabled: true,
+  });
 
-  const { data, isError, isLoading, error, status, refetch } = useContractReads(
-    {
-      contracts: contracts,
-      onSuccess: () => {
-        console.log("SUCCESS FETCH");
-      },
-      onError: () => {
-        console.log("ERRROR");
-      },
-      enabled: true,
-    }
-  );
-
-  console.log(status);
-
-  if (isError) {
-    console.log("ERROR:");
-    console.log(error);
-  }
-
-  console.log(isLoading);
-  console.log("Balance data:");
-  console.log(data);
-  console.log(
-    data?.map((value) => ethers.utils.formatEther(value as BigNumberish))
-  );
+  console.log(data, isError, isLoading, error, status);
 
   const zip = (a: any, b: any) => a.map((k: any, i: any) => [k, b[i]]);
+
+  const netWorth = data
+    ? zip(data, tokenList).reduce((a: number, [d, ti]: [BigNumber, any]) => {
+        return a + parseBigTokenToNumber(d, ti);
+      }, 0)
+    : 0;
 
   return (
     <Container maxW="container.lg" p={3} marginTop={100} as="main" minH="70vh">
@@ -107,7 +106,6 @@ const Home = () => {
           width: "300px",
         }}
         variant="outlined"
-        onClick={() => refetch()}
       >
         <CardBody style={{ padding: "30px" }}>
           <Text marginBottom={2} style={{ fontSize: "20px" }}>
@@ -115,7 +113,7 @@ const Home = () => {
           </Text>
 
           <Text style={{ fontSize: "42px", fontWeight: "bold" }}>
-            $10,234.23
+            ${netWorth}
           </Text>
         </CardBody>
       </Card>
@@ -141,32 +139,40 @@ const Home = () => {
           <Thead>
             <Tr style={{ borderTop: "1px solid rgb(237, 242, 247)" }}>
               <Th>Token</Th>
-              <Th isNumeric>RBalance</Th>
+              <Th isNumeric>Balance</Th>
+              {/* <Th isNumeric>RBalance</Th>
               <Th isNumeric>NRBalance</Th>
               <Th isNumeric>Frozen Balance</Th>
-              <Th isNumeric>Total Balance</Th>
+              <Th isNumeric>Total Balance</Th> */}
               <Th isNumeric>Price</Th>
               <Th isNumeric>Total Value</Th>
             </Tr>
           </Thead>
           <Tbody>
-            {/* {data &&
-              zip(data, tokenList).map((a: any) => {
-                const [d, i] = a;
-                const amount = (d as BigNumberish).toString();
+            {/* {data && (
+              <Tr>
+                <Td>0</Td>
+              </Tr>
+            )} */}
 
-                return (
-                  <Tr>
-                    <Td>{i.name}</Td>
-                    <Td isNumeric>{amount}</Td>
-                    <Td isNumeric>0</Td>
-                    <Td isNumeric>0</Td>
-                    <Td isNumeric>{amount}</Td>
-                    <Td isNumeric>$1.00</Td>
-                    <Td isNumeric>${amount}</Td>
-                  </Tr>
-                );
-              })} */}
+            {data &&
+              zip(data, tokenList).map(([d, ti]: [BigNumber, any]) => {
+                if (d) {
+                  const amount = parseBigTokenToNumber(d, ti);
+
+                  return (
+                    <Tr>
+                      <Td>{ti.name}</Td>
+                      <Td isNumeric>{amount}</Td>
+                      {/* <Td isNumeric>0</Td>
+                      <Td isNumeric>0</Td>
+                      <Td isNumeric>{amount}</Td> */}
+                      <Td isNumeric>$1.00</Td>
+                      <Td isNumeric>${amount}</Td>
+                    </Tr>
+                  );
+                }
+              })}
             {/* <Tr>
               <Td>N-Dai</Td>
               <Td isNumeric>13.12</Td>

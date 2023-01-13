@@ -6,4 +6,5 @@ export type ContractName =
   | "dai"
   | "weth"
   | "nusdc"
-  | "tokenList";
+  | "tokenList"
+  | "tokenInfo";

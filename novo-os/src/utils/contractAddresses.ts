@@ -34,6 +34,36 @@ const contractAddressesByDeployMode: Record<
     // Reversible token addresses
     nusdc: "0x6c0e9F485aAb53226c422aCA0Cdd709318dE339f",
 
+    tokenInfo: {
+      "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2": {
+        name: "Wrapped Ethereum",
+        address: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+        symbol: "Weth",
+        decimals: 18,
+        chainId: 1,
+        logoURI:
+          "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png",
+      },
+      "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48": {
+        name: "USD Coin",
+        address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+        symbol: "USDC",
+        decimals: 6,
+        chainId: 1,
+        logoURI:
+          "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+      },
+      "0x6B175474E89094C44Da98b954EedeAC495271d0F": {
+        name: "Dai Stablecoin",
+        address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        symbol: "DAI",
+        decimals: 18,
+        chainId: 1,
+        logoURI:
+          "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png",
+      },
+    },
+
     // Interested token list
     tokenList: [
       //       {

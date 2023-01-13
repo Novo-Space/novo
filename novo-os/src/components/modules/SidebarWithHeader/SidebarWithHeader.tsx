@@ -80,7 +80,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const defiNav: [string, string, IconType][] = [
     ["Swap", "/defi/swap", AiOutlineSwap],
     ["Yield", "/defi/yield", MdOutlineSavings],
-    ["Markets", "/defi/markets", AiOutlineBank],
+    ["Borrow", "/defi/markets", AiOutlineBank],
   ];
   const bridgeNav: [string, string, IconType][] = [
     ["Bridge In", "/bridge/bridge-in", ImEnter],
@@ -89,20 +89,20 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
   const courtNav: [string, string, IconType][] = [
     [
-      "Latest Reversal Hearings",
-      "https://novaspace.discourse.group/c/reversal-requests/5",
-      GiInjustice,
-    ],
-    [
       "Open Reversal Request",
       "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
       HiOutlineHandRaised,
     ],
+    [
+      "Latest Reversal Hearings",
+      "https://novaspace.discourse.group/c/reversal-requests/5",
+      GiInjustice,
+    ],
   ];
   const navSections: [string, [string, string, IconType][]][] = [
     ["General", generalNav],
-    ["Defi", defiNav],
     ["Bridge", bridgeNav],
+    ["Defi", defiNav],
     ["Court", courtNav],
   ];
 
