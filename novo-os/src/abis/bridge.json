@@ -3,6 +3,27 @@
     {
       "inputs": [
         {
+          "internalType": "uint256",
+          "name": "_numReversibleBlocks",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "_delayBlock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "_governanceContract",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "inputs": [
+        {
           "internalType": "address",
           "name": "_erc20Contract",
           "type": "address"
@@ -34,19 +55,6 @@
       "name": "BridgeOut",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "delayBlock",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
       "type": "function"
     },
     {
@@ -90,6 +98,19 @@
         }
       ],
       "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_erc20Contract",
+          "type": "address"
+        }
+      ],
+      "name": "preWithdrawERC20",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
     },
     {

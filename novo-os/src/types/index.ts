@@ -1,3 +1,9 @@
-export type DeployMode = "goreli";
+export type DeployMode = "goreli" | "hardhat";
 
-export type ContractName = "novoBridge" | "usdc" | "dai" | "weth";
+export type ContractName =
+  | "novoBridge"
+  | "usdc"
+  | "dai"
+  | "weth"
+  | "nusdc"
+  | "tokenList";
