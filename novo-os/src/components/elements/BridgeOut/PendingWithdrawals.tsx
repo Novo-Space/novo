@@ -13,12 +13,57 @@ import {
   TableContainer,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { BigNumber } from "ethers";
+import { ConfigKey } from "types";
+import { config } from "utils/config";
+import { parseBigTokenToNumber, zip } from "utils/helpers";
+import { useAccount, useBlockNumber, useContractReads } from "wagmi";
+import bridge from "../../../abis/bridge.json";
+
+const tokenList = [
+  // Novo tokens
+  {
+    name: "N-USD Coin",
+    address: "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
+    symbol: "N-USDC",
+    decimals: 6,
+    chainId: 1,
+    logoURI:
+      "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+  },
+];
 
 const BridgeOut = () => {
+  const { address } = useAccount();
+
+  const { data: blockNumber } = useBlockNumber({ watch: true });
+
+  // PENDING BRIDGE OUTS
+
+  // Get pending bridge outs
+  const contracts = tokenList.map((token: any) => ({
+    address: config.novoBridge,
+    abi: bridge.abi,
+    functionName: "getwithdrawInfo",
+    args: [address, config[token.symbol.substring(2) as ConfigKey]],
+  }));
+
+  const {
+    data: pendingWithdrawalsData,
+    isError,
+    isLoading,
+    error,
+    status,
+  } = useContractReads({
+    contracts: contracts,
+  });
+
+  console.log(pendingWithdrawalsData);
   return (
     <Card
       style={{ backgroundColor: "white", borderRadius: "0px" }}
@@ -26,28 +71,40 @@ const BridgeOut = () => {
     >
       <CardHeader>
         <Heading size="md">Pending Bridge Outs</Heading>
+        <Text style={{ fontSize: "12px" }}>Block Number: {blockNumber}</Text>
       </CardHeader>
 
       <TableContainer pt="4">
         <Table size="sm">
           <Thead>
             <Tr>
-              <Th>Amount</Th>
               <Th>Token</Th>
-              <Th isNumeric>Time Till Available</Th>
+              <Th>Amount</Th>
+              <Th isNumeric>Blocks Till Available</Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>10.23</Td>
-              <Td>Dai</Td>
-              <Td isNumeric>Ready For Withdrawal</Td>
-            </Tr>
-            <Tr>
-              <Td>12.00</Td>
-              <Td>Eth</Td>
-              <Td isNumeric>02:23</Td>
-            </Tr>
+            {pendingWithdrawalsData &&
+              zip(pendingWithdrawalsData, tokenList).map(
+                ([[amount, startBlock], ti]: [[BigNumber, BigNumber], any]) => {
+                  if (amount && blockNumber && !amount.isZero()) {
+                    const withdrawAmount = parseBigTokenToNumber(amount, ti);
+                    const endBlock = startBlock.toNumber() + config.delayBlocks;
+
+                    return (
+                      <Tr>
+                        <Td>{ti.name}</Td>
+                        <Td isNumeric>{withdrawAmount}</Td>
+                        <Td isNumeric>
+                          {endBlock > blockNumber
+                            ? endBlock - blockNumber
+                            : "Available Now"}
+                        </Td>
+                      </Tr>
+                    );
+                  }
+                }
+              )}
           </Tbody>
         </Table>
       </TableContainer>

@@ -14,9 +14,9 @@ import {
 } from "@chakra-ui/react";
 import Image from "next/image";
 import { useState } from "react";
-import { ContractName } from "types";
+import { ConfigKey } from "types";
 import { useDebounce } from "use-debounce";
-import { contractAddresses } from "utils/contractAddresses";
+import { config } from "utils/config";
 import { adjustAmountByDecimal, parseBigTokenToNumber } from "utils/helpers";
 import {
   useAccount,
@@ -28,27 +28,26 @@ import {
 import novoLogo from "../../../../public/android-chrome-512x512.png";
 import bridge from "../../../abis/bridge.json";
 import erc20 from "../../../abis/erc20.json";
-
 const BridgeIn = () => {
   const toast = useToast();
   const { address } = useAccount();
 
   const [asset, setAsset] = useState("usdc");
-  const assetAddress = contractAddresses[asset as ContractName];
+  const assetAddress = config[asset as ConfigKey];
   const [debouncedAssetAddress] = useDebounce(assetAddress, 500);
 
   const [amount, setAmount] = useState("0");
   const [debouncedAmount] = useDebounce(amount, 500);
   const decimalAdjustedDebouncedAmount = adjustAmountByDecimal(
     parseInt(debouncedAmount),
-    contractAddresses.tokenInfo[debouncedAssetAddress].decimals
+    config.tokenInfo[debouncedAssetAddress].decimals
   );
 
   const { config: approveConfig } = usePrepareContractWrite({
     address: debouncedAssetAddress,
     abi: erc20.abi,
     functionName: "approve",
-    args: [contractAddresses.novoBridge, decimalAdjustedDebouncedAmount],
+    args: [config.novoBridge, decimalAdjustedDebouncedAmount],
   });
 
   const { write: writeApprove } = useContractWrite({
@@ -67,7 +66,7 @@ const BridgeIn = () => {
     isError: isPrepareError,
   } = useContractWrite({
     mode: "recklesslyUnprepared",
-    address: contractAddresses.novoBridge,
+    address: config.novoBridge,
     abi: bridge.abi,
     functionName: "BridgeIn",
     args: [debouncedAssetAddress, decimalAdjustedDebouncedAmount],
@@ -111,15 +110,15 @@ const BridgeIn = () => {
     isLoading: allowanceIsLoading,
     error: allowanceError,
   } = useContractRead({
-    address: contractAddresses.usdc,
+    address: config.USDC,
     abi: erc20.abi,
     functionName: "allowance",
-    args: [address, contractAddresses.novoBridge],
+    args: [address, config.novoBridge],
     watch: true,
   });
 
   console.log(
-    `Contract: ${contractAddresses.usdc}, address: ${address}, Allowance data: ${allowanceData}, ${allowanceIsError}, ${allowanceIsLoading}, ${allowanceError})
+    `Contract: ${config.USDC}, address: ${address}, Allowance data: ${allowanceData}, ${allowanceIsError}, ${allowanceIsLoading}, ${allowanceError})
     }`
   );
 
@@ -138,7 +137,7 @@ const BridgeIn = () => {
   });
 
   console.log(
-    `Contract: ${contractAddresses.usdc}, address: ${address}, balance data: ${balanceData}, ${balanceIsError}, ${balanceIsLoading}, ${balanceError})
+    `Contract: ${config.USDC}, address: ${address}, balance data: ${balanceData}, ${balanceIsError}, ${balanceIsLoading}, ${balanceError})
     }`
   );
 
@@ -167,7 +166,7 @@ const BridgeIn = () => {
             Amount
             {` (Your balance: $${parseBigTokenToNumber(
               balanceData as any,
-              contractAddresses.tokenInfo[debouncedAssetAddress]
+              config.tokenInfo[debouncedAssetAddress]
             )})`}
           </Text>
           <NumberInput value={amount} onChange={(value) => setAmount(value)}>

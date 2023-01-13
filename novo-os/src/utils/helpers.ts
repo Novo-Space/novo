@@ -15,14 +15,16 @@ export const adjustAmountByDecimal = (amount: number, decimals: number) =>
 //     isLoading: revIsLoading,
 //     error: revError,
 //   } = useContractRead({
-//     address: contractAddresses.novoBridge,
+//     address: config.novoBridge,
 //     abi: bridge.abi,
 //     functionName: "getRev",
-//     args: [contractAddresses.usdc],
+//     args: [config.usdc],
 //     watch: true,
 //   });
 
 //   console.log(
-//     `Contract: ${contractAddresses.usdc}, address: ${address}, rev data: ${revData}, ${revIsError}, ${revIsLoading}, ${revError})
+//     `Contract: ${config.usdc}, address: ${address}, rev data: ${revData}, ${revIsError}, ${revIsLoading}, ${revError})
 //     }`
 //   );
+
+export const zip = (a: any, b: any) => a.map((k: any, i: any) => [k, b[i]]);

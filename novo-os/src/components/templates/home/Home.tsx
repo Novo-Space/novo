@@ -12,12 +12,12 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { BigNumber } from "ethers";
+import { config } from "utils/config";
 
 // import { BsWallet2 } from "react-icons/bs";
 // import "erc20";
 import { RiWallet3Line } from "react-icons/ri";
-import { contractAddresses } from "utils/contractAddresses";
-import { parseBigTokenToNumber } from "utils/helpers";
+import { parseBigTokenToNumber, zip } from "utils/helpers";
 import { useAccount, useContractRead, useContractReads } from "wagmi";
 import erc20 from "../../../abis/erc20.json";
 
@@ -44,7 +44,7 @@ const tokenList = [
   // Novo tokens
   {
     name: "N-USD Coin",
-    address: "0x6c0e9F485aAb53226c422aCA0Cdd709318dE339f",
+    address: "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
     symbol: "N-USDC",
     decimals: 6,
     chainId: 1,
@@ -63,7 +63,7 @@ const Home = () => {
     isLoading: balanceIsLoading,
     error: balanceError,
   } = useContractRead({
-    address: contractAddresses.usdc,
+    address: config.USDC,
     abi: erc20.abi,
     functionName: "balanceOf",
     args: [address],
@@ -80,12 +80,9 @@ const Home = () => {
 
   const { data, isError, isLoading, error, status } = useContractReads({
     contracts: contracts,
-    enabled: true,
   });
 
   console.log(data, isError, isLoading, error, status);
-
-  const zip = (a: any, b: any) => a.map((k: any, i: any) => [k, b[i]]);
 
   const netWorth = data
     ? zip(data, tokenList).reduce((a: number, [d, ti]: [BigNumber, any]) => {

@@ -1,13 +1,12 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
 import { SwapWidget } from "@uniswap/widgets";
 import "@uniswap/widgets/fonts.css";
-import { contractAddresses } from "utils/contractAddresses";
+import { config } from "utils/config";
 import { useSigner } from "wagmi";
-
 const MY_TOKEN_LIST = [
   {
     name: "Wrapped Ethereum",
-    address: contractAddresses.weth,
+    address: config.WETH,
     symbol: "Weth",
     decimals: 18,
     chainId: 1,
@@ -16,7 +15,7 @@ const MY_TOKEN_LIST = [
   },
   {
     name: "Dai Stablecoin",
-    address: contractAddresses.dai,
+    address: config.DAI,
     symbol: "DAI",
     decimals: 18,
     chainId: 1,
@@ -34,7 +33,7 @@ const MY_TOKEN_LIST = [
   //   },
   {
     name: "USD Coin",
-    address: contractAddresses.usdc,
+    address: config.USDC,
     symbol: "USDC",
     decimals: 6,
     chainId: 1,
