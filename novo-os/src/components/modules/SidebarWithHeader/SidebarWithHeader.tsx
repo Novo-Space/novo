@@ -26,7 +26,11 @@ import { FiHome, FiMenu } from "react-icons/fi";
 import { GiInjustice } from "react-icons/gi";
 import { HiOutlineHandRaised } from "react-icons/hi2";
 import { ImEnter, ImExit } from "react-icons/im";
-import { MdOutlineSavings } from "react-icons/md";
+import {
+  MdLockOutline,
+  MdOutlineConstruction,
+  MdOutlineSavings,
+} from "react-icons/md";
 // import { useGlobalContext } from "../common/globalState";
 
 // interface LinkItemProps {
@@ -79,10 +83,10 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   const generalNav: [string, string, IconType][] = [["Dashboard", "/", FiHome]];
   const defiNav: [string, string, IconType][] = [
+    ["Faucet", "/defi/faucet", FaFaucet],
     ["Swap", "/defi/swap", AiOutlineSwap],
     ["Yield", "/defi/yield", MdOutlineSavings],
     ["Borrow", "/defi/markets", AiOutlineBank],
-    ["Faucet", "/defi/faucet", FaFaucet],
   ];
   const bridgeNav: [string, string, IconType][] = [
     ["Bridge In", "/bridge/bridge-in", ImEnter],
@@ -90,7 +94,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   ];
 
   const courtNav: [string, string, IconType][] = [
-    ["Panel", "/admin/panel", GiInjustice],
+    ["Admin Panel", "/admin/panel", GiInjustice],
     [
       "Open Reversal Request",
       "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
@@ -195,6 +199,14 @@ const NavItem = ({ icon, href, children, ...rest }: NavItemProps) => {
         <>
           {children}
           {isExternalLink && <ExternalLinkIcon mx="6px" />}
+          {(href.includes("swap") ||
+            href.includes("yield") ||
+            href.includes("markets")) && (
+            <MdOutlineConstruction style={{ margin: "6px 6px 6px 6px" }} />
+          )}
+          {href.includes("panel") && (
+            <MdLockOutline style={{ margin: "6px 6px 6px 6px" }} />
+          )}
         </>
       </Flex>
     </Link>

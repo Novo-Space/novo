@@ -57,7 +57,7 @@ const Home = () => {
       <VStack w={"full"}>
         <div>
           <Text marginBottom={6} style={{ fontSize: "30px" }}>
-            <b>Novo</b> Swap
+            <b>Novo</b> Swap (Coming Soon)
           </Text>
           <div className="Uniswap">
             <SwapWidget

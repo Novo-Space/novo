@@ -11,7 +11,7 @@ const Home = () => {
     <Container maxW="container.lg" p={3} marginTop={100} as="main" minH="70vh">
       <div style={{ paddingBottom: "100px" }}>
         <Text marginBottom={6} style={{ fontSize: "30px" }}>
-          <b>Novo</b> Admin Panel
+          <b>Novo</b> Admin Panel (Open To The Public For Demo Purposes)
         </Text>
 
         <SimpleGrid columns={2} spacing={0}>
