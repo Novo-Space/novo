@@ -32,14 +32,17 @@ import { ConfigKey } from "types";
 //   configByDeployMode[deployMode as DeployMode];
 
 // Update when redeploying bridge and nusdc
-export const NOVO_BRIDGE_ADDRESS = "0x75b0B516B47A27b1819D21B26203Abf314d42CCE";
-export const NUSDC_ADDRESS = "0x9DE61a8C8Ed7182E5378A028cB9Ce74ce2BEe624";
+export const NOVO_BRIDGE_ADDRESS = "0x2b639Cc84e1Ad3aA92D4Ee7d2755A6ABEf300D72";
+export const NUSDC_ADDRESS = "0x3d6E2F365fA27FdafBB20b9356C0C0922224E8d2";
 
 export const config: Record<ConfigKey, any> = {
+  // Networking
+  rpcUrl: "http://24.199.125.111:8545/",
+
   // Novo contract addresses
   novoBridge: NOVO_BRIDGE_ADDRESS,
-  numReversibleBlocks: 3,
-  delayBlocks: 4,
+  numReversibleBlocks: 300,
+  delayBlocks: 300,
   blockTime: 5000,
 
   // ERC-20 contract addresses

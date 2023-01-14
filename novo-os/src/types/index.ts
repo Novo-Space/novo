@@ -19,4 +19,5 @@ export type ConfigKey =
   | "tokenInfo"
   | "numReversibleBlocks"
   | "delayBlocks"
-  | "blockTime";
+  | "blockTime"
+  | "rpcUrl";

@@ -11,6 +11,7 @@ import { Default } from "components/layouts/Default";
 import { SessionProvider } from "next-auth/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
+import { config as envConfig } from "utils/config";
 import { createClient, WagmiConfig } from "wagmi";
 import { goerli } from "wagmi/chains";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
@@ -25,7 +26,7 @@ export const hardhatMainnet = {
     symbol: "ETH",
   },
   rpcUrls: {
-    default: { http: ["http://127.0.0.1:8545"] },
+    default: { http: [envConfig.rpcUrl] },
   },
 };
 
@@ -34,7 +35,7 @@ const { chains, provider, webSocketProvider } = configureChains(
   [
     jsonRpcProvider({
       rpc: (chain) => ({
-        http: "http://127.0.0.1:8545",
+        http: envConfig.rpcUrl,
       }),
     }),
     // alchemyProvider({ apiKey: "nqrcMq4YFgwPJZYr-Md4hiuIUD94HHOy" }),

@@ -43,7 +43,7 @@ const MY_TOKEN_LIST = [
 ];
 
 const Home = () => {
-  //   const jsonRpcEndpoint = `http://127.0.0.1:8545`;
+  //   const jsonRpcEndpoint = `envConfig.rpcUrl`;
   //   const jsonRpcProvider = new providers.JsonRpcProvider(jsonRpcEndpoint);
   //   const provider = new ethers.providers.Web3Provider(
   //     jsonRpcProvider as ethers.providers.JsonRpcFetchFunc
@@ -62,7 +62,7 @@ const Home = () => {
           <div className="Uniswap">
             <SwapWidget
               tokenList={MY_TOKEN_LIST}
-              jsonRpcUrlMap={{ 1: "http://127.0.0.1:8545" }}
+              jsonRpcUrlMap={{ 1: config.rpcUrl }}
               hideConnectionUI={true}
               //       provider={provider as any}
             />

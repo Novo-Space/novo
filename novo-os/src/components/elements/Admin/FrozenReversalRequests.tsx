@@ -88,7 +88,7 @@ const FrozenReversalRequests = () => {
         }}
       >
         <RiWallet3Line style={{ fontSize: "20px", marginRight: "6px" }} />
-        <Text style={{ fontWeight: "bold" }}>Spenditures</Text>
+        <Text style={{ fontWeight: "bold" }}>Frozen Reversal Requests</Text>
       </div>
       <Table variant="simple">
         <Thead>
