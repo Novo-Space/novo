@@ -28,3 +28,6 @@ export const adjustAmountByDecimal = (amount: number, decimals: number) =>
 //   );
 
 export const zip = (a: any, b: any) => a.map((k: any, i: any) => [k, b[i]]);
+
+export const formatAddress = (address: string) =>
+  `${address.substring(0, 5)}...${address.substring(address.length - 4)}`;

@@ -2,6 +2,7 @@ import {
   Card,
   CardBody,
   Container,
+  SimpleGrid,
   Table,
   TableContainer,
   Tbody,
@@ -12,14 +13,18 @@ import {
   Tr,
 } from "@chakra-ui/react";
 import { BigNumber } from "ethers";
-import { config } from "utils/config";
+import { config, NUSDC_ADDRESS } from "utils/config";
 
-// import { BsWallet2 } from "react-icons/bs";
-// import "erc20";
 import { RiWallet3Line } from "react-icons/ri";
 import { parseBigTokenToNumber, zip } from "utils/helpers";
-import { useAccount, useContractRead, useContractReads } from "wagmi";
+import {
+  useAccount,
+  useBlockNumber,
+  useContractRead,
+  useContractReads,
+} from "wagmi";
 import erc20 from "../../../abis/erc20.json";
+import Spenditures from "./Spenditures";
 
 const tokenList = [
   // ERC-20 tokens
@@ -44,7 +49,7 @@ const tokenList = [
   // Novo tokens
   {
     name: "N-USD Coin",
-    address: "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
+    address: NUSDC_ADDRESS,
     symbol: "N-USDC",
     decimals: 6,
     chainId: 1,
@@ -55,6 +60,7 @@ const tokenList = [
 
 const Home = () => {
   const { address } = useAccount();
+  const { data: blockNumber } = useBlockNumber({ watch: true });
 
   // balance INFO
   const {
@@ -96,24 +102,45 @@ const Home = () => {
         <b>Novo</b> Dashboard
       </Text>
 
-      <Card
-        style={{
-          backgroundColor: "white",
-          borderRadius: "0px",
-          width: "300px",
-        }}
-        variant="outlined"
-      >
-        <CardBody style={{ padding: "30px" }}>
-          <Text marginBottom={2} style={{ fontSize: "20px" }}>
-            Net Worth
-          </Text>
+      <SimpleGrid columns={3} spacing={16}>
+        <Card
+          style={{
+            backgroundColor: "white",
+            borderRadius: "0px",
+            width: "300px",
+          }}
+          variant="outlined"
+        >
+          <CardBody style={{ padding: "30px" }}>
+            <Text marginBottom={2} style={{ fontSize: "20px" }}>
+              Net Worth
+            </Text>
 
-          <Text style={{ fontSize: "42px", fontWeight: "bold" }}>
-            ${netWorth}
-          </Text>
-        </CardBody>
-      </Card>
+            <Text style={{ fontSize: "42px", fontWeight: "bold" }}>
+              ${netWorth}
+            </Text>
+          </CardBody>
+        </Card>
+
+        <Card
+          style={{
+            backgroundColor: "white",
+            borderRadius: "0px",
+            width: "300px",
+          }}
+          variant="outlined"
+        >
+          <CardBody style={{ padding: "30px" }}>
+            <Text marginBottom={2} style={{ fontSize: "20px" }}>
+              Epoch
+            </Text>
+
+            <Text style={{ fontSize: "42px", fontWeight: "bold" }}>
+              {blockNumber && Math.trunc(blockNumber / 1000)}
+            </Text>
+          </CardBody>
+        </Card>
+      </SimpleGrid>
 
       <TableContainer
         style={{
@@ -191,6 +218,7 @@ const Home = () => {
           </Tbody>
         </Table>
       </TableContainer>
+      <Spenditures />
     </Container>
   );
 };

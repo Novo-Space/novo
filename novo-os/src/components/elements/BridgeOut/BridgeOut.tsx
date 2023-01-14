@@ -166,12 +166,3 @@ const BridgeOut = () => {
 };
 
 export default BridgeOut;
-function toast(arg0: {
-  title: string;
-  description: string;
-  status: string;
-  duration: number;
-  isClosable: boolean;
-}) {
-  throw new Error("Function not implemented.");
-}

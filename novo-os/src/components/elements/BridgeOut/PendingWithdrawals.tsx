@@ -21,7 +21,7 @@ import {
 import { prepareWriteContract, writeContract } from "@wagmi/core";
 import { BigNumber } from "ethers";
 import { ConfigKey } from "types";
-import { config } from "utils/config";
+import { config, NUSDC_ADDRESS } from "utils/config";
 import { parseBigTokenToNumber, zip } from "utils/helpers";
 import { useAccount, useBlockNumber, useContractReads } from "wagmi";
 import bridge from "../../../abis/bridge.json";
@@ -30,7 +30,7 @@ const tokenList = [
   // Novo tokens
   {
     name: "N-USD Coin",
-    address: "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
+    address: NUSDC_ADDRESS,
     symbol: "N-USDC",
     decimals: 6,
     chainId: 1,

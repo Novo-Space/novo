@@ -20,7 +20,7 @@ import { ConfigKey } from "types";
 //     WETH: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
 
 //     // Reversible token addresses
-//     "N-USDC": "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
+//     "N-USDC": NUSDC_ADDRESS,
 
 //     tokenList: [],
 //     tokenInfo: {},
@@ -31,9 +31,13 @@ import { ConfigKey } from "types";
 // export const config =
 //   configByDeployMode[deployMode as DeployMode];
 
+// Update when redeploying bridge and nusdc
+export const NOVO_BRIDGE_ADDRESS = "0xec1bb74f5799811c0c1bff94ef76fb40abccbe4a";
+export const NUSDC_ADDRESS = "0xFb02E94583c102f1dF895173C1784b6fe43e2Ebd";
+
 export const config: Record<ConfigKey, any> = {
   // Novo contract addresses
-  novoBridge: "0x398e4948e373db819606a459456176d31c3b1f91",
+  novoBridge: NOVO_BRIDGE_ADDRESS,
   numReversibleBlocks: 3,
   delayBlocks: 4,
   blockTime: 5000,
@@ -44,7 +48,7 @@ export const config: Record<ConfigKey, any> = {
   WETH: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
 
   // Reversible token addresses
-  "N-USDC": "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
+  "N-USDC": NUSDC_ADDRESS,
 
   tokenInfo: {
     // USDC
@@ -57,9 +61,9 @@ export const config: Record<ConfigKey, any> = {
       logoURI:
         "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
     },
-    "0xbAfc56E570DF8B619535aE824A4003b262bfF33c": {
+    NUSDC_ADDRESS: {
       name: "NUSD Coin",
-      address: "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
+      address: NUSDC_ADDRESS,
       symbol: "N-USDC",
       decimals: 6,
       chainId: 1,
