@@ -32,8 +32,8 @@ import { ConfigKey } from "types";
 //   configByDeployMode[deployMode as DeployMode];
 
 // Update when redeploying bridge and nusdc
-export const NOVO_BRIDGE_ADDRESS = "0xec1bb74f5799811c0c1bff94ef76fb40abccbe4a";
-export const NUSDC_ADDRESS = "0xFb02E94583c102f1dF895173C1784b6fe43e2Ebd";
+export const NOVO_BRIDGE_ADDRESS = "0x75b0B516B47A27b1819D21B26203Abf314d42CCE";
+export const NUSDC_ADDRESS = "0x9DE61a8C8Ed7182E5378A028cB9Ce74ce2BEe624";
 
 export const config: Record<ConfigKey, any> = {
   // Novo contract addresses
@@ -61,7 +61,7 @@ export const config: Record<ConfigKey, any> = {
       logoURI:
         "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
     },
-    NUSDC_ADDRESS: {
+    [NUSDC_ADDRESS]: {
       name: "NUSD Coin",
       address: NUSDC_ADDRESS,
       symbol: "N-USDC",

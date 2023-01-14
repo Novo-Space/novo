@@ -1,4 +1,7 @@
+import { IconButton } from "@chakra-ui/react";
 import { BigNumber } from "ethers";
+import "react";
+import { FiCopy } from "react-icons/fi";
 
 // Convert big token to number
 export const parseBigTokenToNumber = (bn: BigNumber, ti: any) =>
@@ -31,3 +34,24 @@ export const zip = (a: any, b: any) => a.map((k: any, i: any) => [k, b[i]]);
 
 export const formatAddress = (address: string) =>
   `${address.substring(0, 5)}...${address.substring(address.length - 4)}`;
+
+export const Copiable = ({
+  copy,
+  display,
+}: {
+  copy: string;
+  display: string;
+}) => {
+  return (
+    <p>
+      {display}
+      <IconButton
+        onClick={() => navigator.clipboard.writeText(copy)}
+        aria-label="Request Reversal Button"
+        icon={<FiCopy />}
+        style={{ marginLeft: "6px" }}
+        size="xs"
+      />
+    </p>
+  );
+};

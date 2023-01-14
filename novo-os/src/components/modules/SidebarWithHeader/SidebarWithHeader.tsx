@@ -98,6 +98,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       "https://novaspace.discourse.group/c/reversal-requests/5",
       GiInjustice,
     ],
+    ["Panel", "/admin/panel", GiInjustice],
   ];
   const navSections: [string, [string, string, IconType][]][] = [
     ["General", generalNav],

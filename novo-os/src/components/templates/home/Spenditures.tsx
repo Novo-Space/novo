@@ -82,7 +82,8 @@ const Spenditures = () => {
             <Th>From</Th>
             <Th>To</Th>
             <Th isNumeric>Amount</Th>
-            <Th isNumeric>BlockNumber</Th>
+            <Th isNumeric>Epoch</Th>
+            <Th isNumeric>Spenditure ID</Th>
             <Th isNumeric>Request Reversal</Th>
           </Tr>
         </Thead>
@@ -92,7 +93,7 @@ const Spenditures = () => {
               ([spenditures, ti]: [any, any]) => {
                 return (
                   spenditures &&
-                  spenditures.map((spenditure: any) => {
+                  spenditures.map((spenditure: any, index: number) => {
                     // address, address, bignumber, bignumber
                     const [from, to, amount, blockNumber] = spenditure;
                     return (
@@ -101,7 +102,10 @@ const Spenditures = () => {
                         <Th>{formatAddress(from)}</Th>
                         <Th>{formatAddress(to)}</Th>
                         <Th isNumeric>{parseBigTokenToNumber(amount, ti)}</Th>
-                        <Th isNumeric>{blockNumber.toNumber()}</Th>
+                        <Th isNumeric>
+                          {Math.trunc(blockNumber.toNumber() / 1000)}
+                        </Th>
+                        <Th isNumeric>{index}</Th>
                         <Th isNumeric>
                           <IconButton
                             aria-label="Request Reversal Button"
