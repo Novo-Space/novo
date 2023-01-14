@@ -37,7 +37,7 @@ export const NUSDC_ADDRESS = "0xfE2e300a1c55E902B517F181AE4AefaF029716CC";
 
 export const config: Record<ConfigKey, any> = {
   // Networking
-  rpcUrl: "http://24.199.125.111:8545/",
+  rpcUrl: "https://node.novospace.xyz",
 
   // Novo contract addresses
   novoBridge: NOVO_BRIDGE_ADDRESS,
