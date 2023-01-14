@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import { ReactNode, ReactText } from "react";
 import { IconType } from "react-icons";
 import { AiOutlineBank, AiOutlineSwap } from "react-icons/ai";
+import { FaFaucet } from "react-icons/fa";
 import { FiHome, FiMenu } from "react-icons/fi";
 import { GiInjustice } from "react-icons/gi";
 import { HiOutlineHandRaised } from "react-icons/hi2";
@@ -81,6 +82,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     ["Swap", "/defi/swap", AiOutlineSwap],
     ["Yield", "/defi/yield", MdOutlineSavings],
     ["Borrow", "/defi/markets", AiOutlineBank],
+    ["Faucet", "/defi/faucet", FaFaucet],
   ];
   const bridgeNav: [string, string, IconType][] = [
     ["Bridge In", "/bridge/bridge-in", ImEnter],
@@ -88,6 +90,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
   ];
 
   const courtNav: [string, string, IconType][] = [
+    ["Panel", "/admin/panel", GiInjustice],
     [
       "Open Reversal Request",
       "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
@@ -98,7 +101,6 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       "https://novaspace.discourse.group/c/reversal-requests/5",
       GiInjustice,
     ],
-    ["Panel", "/admin/panel", GiInjustice],
   ];
   const navSections: [string, [string, string, IconType][]][] = [
     ["General", generalNav],

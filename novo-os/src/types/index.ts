@@ -20,4 +20,5 @@ export type ConfigKey =
   | "numReversibleBlocks"
   | "delayBlocks"
   | "blockTime"
-  | "rpcUrl";
+  | "rpcUrl"
+  | "faucetAddress";

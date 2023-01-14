@@ -34,6 +34,7 @@ import { ConfigKey } from "types";
 // Update when redeploying bridge and nusdc
 export const NOVO_BRIDGE_ADDRESS = "0xfcfe742e19790dd67a627875ef8b45f17db1dac6";
 export const NUSDC_ADDRESS = "0xfE2e300a1c55E902B517F181AE4AefaF029716CC";
+export const FAUCET_ADDRESS = "0x25c0a2f0a077f537bd11897f04946794c2f6f1ef";
 
 export const config: Record<ConfigKey, any> = {
   // Networking
@@ -41,6 +42,8 @@ export const config: Record<ConfigKey, any> = {
 
   // Novo contract addresses
   novoBridge: NOVO_BRIDGE_ADDRESS,
+  faucetAddress: FAUCET_ADDRESS,
+
   numReversibleBlocks: 300,
   delayBlocks: 300,
   blockTime: 5000,

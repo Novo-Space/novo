@@ -18,7 +18,7 @@ import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
 export const hardhatMainnet = {
   id: 1,
-  name: "Hardhat Mainnet",
+  name: "Ethereum Testnet (Novo)",
   network: "hardhat",
   nativeCurrency: {
     decimals: 18,
