@@ -18,6 +18,7 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
+import { prepareWriteContract, writeContract } from "@wagmi/core";
 import { BigNumber } from "ethers";
 import { ConfigKey } from "types";
 import { config } from "utils/config";
@@ -29,7 +30,7 @@ const tokenList = [
   // Novo tokens
   {
     name: "N-USD Coin",
-    address: "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
+    address: "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
     symbol: "N-USDC",
     decimals: 6,
     chainId: 1,
@@ -61,9 +62,38 @@ const BridgeOut = () => {
     status,
   } = useContractReads({
     contracts: contracts,
+    watch: true,
   });
 
   console.log(pendingWithdrawalsData);
+
+  const claimWithdrawalsSteps = async () => {
+    // Approve token for bridging
+    if (pendingWithdrawalsData) {
+      zip(pendingWithdrawalsData, tokenList).map(
+        async ([d, ti]: [any, any]) => {
+          if (d && blockNumber) {
+            const [amount, startBlock]: [BigNumber, BigNumber] = d;
+            if (amount && !amount.isZero()) {
+              const withdrawAmount = parseBigTokenToNumber(amount, ti);
+              const endBlock = startBlock.toNumber() + config.delayBlocks;
+              if (!(endBlock > blockNumber)) {
+                const claimConfig = await prepareWriteContract({
+                  address: config.novoBridge,
+                  abi: bridge.abi,
+                  functionName: "withdrawERC20",
+                  args: [config[ti.symbol.substring(2) as ConfigKey], amount],
+                });
+                const data = await writeContract(claimConfig);
+                console.log(data);
+              }
+            }
+          }
+        }
+      );
+    }
+  };
+
   return (
     <Card
       style={{ backgroundColor: "white", borderRadius: "0px" }}
@@ -86,22 +116,26 @@ const BridgeOut = () => {
           <Tbody>
             {pendingWithdrawalsData &&
               zip(pendingWithdrawalsData, tokenList).map(
-                ([[amount, startBlock], ti]: [[BigNumber, BigNumber], any]) => {
-                  if (amount && blockNumber && !amount.isZero()) {
-                    const withdrawAmount = parseBigTokenToNumber(amount, ti);
-                    const endBlock = startBlock.toNumber() + config.delayBlocks;
+                ([d, ti]: [any, any]) => {
+                  if (d && blockNumber) {
+                    const [amount, startBlock]: [BigNumber, BigNumber] = d;
+                    if (amount && !amount.isZero()) {
+                      const withdrawAmount = parseBigTokenToNumber(amount, ti);
+                      const endBlock =
+                        startBlock.toNumber() + config.delayBlocks;
 
-                    return (
-                      <Tr>
-                        <Td>{ti.name}</Td>
-                        <Td isNumeric>{withdrawAmount}</Td>
-                        <Td isNumeric>
-                          {endBlock > blockNumber
-                            ? endBlock - blockNumber
-                            : "Available Now"}
-                        </Td>
-                      </Tr>
-                    );
+                      return (
+                        <Tr>
+                          <Td>{ti.name}</Td>
+                          <Td isNumeric>{withdrawAmount}</Td>
+                          <Td isNumeric>
+                            {endBlock > blockNumber
+                              ? endBlock - blockNumber
+                              : "Available Now"}
+                          </Td>
+                        </Tr>
+                      );
+                    }
                   }
                 }
               )}
@@ -148,7 +182,11 @@ const BridgeOut = () => {
             <Text style={{ fontSize: "30px", fontWeight: "bold" }}>$10.23</Text>
           </Box> */}
           <ButtonGroup spacing="2">
-            <Button variant="solid" colorScheme="blue">
+            <Button
+              variant="solid"
+              colorScheme="blue"
+              onClick={() => claimWithdrawalsSteps()}
+            >
               Claim Completed Withdrawals
             </Button>
           </ButtonGroup>

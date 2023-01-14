@@ -44,7 +44,7 @@ const tokenList = [
   // Novo tokens
   {
     name: "N-USD Coin",
-    address: "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
+    address: "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
     symbol: "N-USDC",
     decimals: 6,
     chainId: 1,

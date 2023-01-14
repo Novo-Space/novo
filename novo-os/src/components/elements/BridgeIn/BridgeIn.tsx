@@ -32,7 +32,7 @@ const BridgeIn = () => {
   const toast = useToast();
   const { address } = useAccount();
 
-  const [asset, setAsset] = useState("usdc");
+  const [asset, setAsset] = useState("USDC");
   const assetAddress = config[asset as ConfigKey];
   const [debouncedAssetAddress] = useDebounce(assetAddress, 500);
 
@@ -43,12 +43,18 @@ const BridgeIn = () => {
     config.tokenInfo[debouncedAssetAddress].decimals
   );
 
-  const { config: approveConfig } = usePrepareContractWrite({
+  const {
+    config: approveConfig,
+    isError: approveIsError,
+    error: approveError,
+  } = usePrepareContractWrite({
     address: debouncedAssetAddress,
     abi: erc20.abi,
     functionName: "approve",
     args: [config.novoBridge, decimalAdjustedDebouncedAmount],
   });
+
+  console.log("APPROVE INFO", approveIsError, approveError);
 
   const { write: writeApprove } = useContractWrite({
     ...approveConfig,
@@ -92,6 +98,7 @@ const BridgeIn = () => {
   const bridgeInSteps = async () => {
     // Approve token for bridging
     console.log("WRITE APPROVE");
+    console.log(writeApprove);
     writeApprove?.();
   };
 
@@ -159,8 +166,8 @@ const BridgeIn = () => {
             value={asset as string}
             onChange={(event) => setAsset(event.target.value)}
           >
-            <option value="usdc">USDC to N-USDC</option>
-            <option value="usdt">USDT to N-USDT</option>
+            <option value="USDC">USDC to N-USDC</option>
+            {/* <option value="usdt">USDT to N-USDT</option> */}
           </Select>
           <Text>
             Amount

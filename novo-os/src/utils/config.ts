@@ -20,7 +20,7 @@ import { ConfigKey } from "types";
 //     WETH: "0xB4FBF271143F4FBf7B91A5ded31805e42b2208d6",
 
 //     // Reversible token addresses
-//     "N-USDC": "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
+//     "N-USDC": "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
 
 //     tokenList: [],
 //     tokenInfo: {},
@@ -33,7 +33,7 @@ import { ConfigKey } from "types";
 
 export const config: Record<ConfigKey, any> = {
   // Novo contract addresses
-  novoBridge: "0x01cf58e264d7578D4C67022c58A24CbC4C4a304E",
+  novoBridge: "0x398e4948e373db819606a459456176d31c3b1f91",
   numReversibleBlocks: 3,
   delayBlocks: 4,
   blockTime: 5000,
@@ -44,7 +44,7 @@ export const config: Record<ConfigKey, any> = {
   WETH: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
 
   // Reversible token addresses
-  "N-USDC": "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
+  "N-USDC": "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
 
   tokenInfo: {
     // USDC
@@ -57,9 +57,9 @@ export const config: Record<ConfigKey, any> = {
       logoURI:
         "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
     },
-    "0x4a2D095b33100C9A5742CA04B832a9b3e4577377": {
+    "0xbAfc56E570DF8B619535aE824A4003b262bfF33c": {
       name: "NUSD Coin",
-      address: "0x4a2D095b33100C9A5742CA04B832a9b3e4577377",
+      address: "0xbAfc56E570DF8B619535aE824A4003b262bfF33c",
       symbol: "N-USDC",
       decimals: 6,
       chainId: 1,
