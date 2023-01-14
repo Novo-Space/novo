@@ -24,7 +24,9 @@ import {
   useContractReads,
 } from "wagmi";
 import erc20 from "../../../abis/erc20.json";
+import ClaimsOpenAgainstYou from "./ClaimsOpenAgainstYou";
 import Spenditures from "./Spenditures";
+import YourClaimsAgainstOthers from "./YourClaimsAgainstOthers";
 
 const tokenList = [
   // ERC-20 tokens
@@ -97,7 +99,14 @@ const Home = () => {
     : 0;
 
   return (
-    <Container maxW="container.lg" p={3} marginTop={100} as="main" minH="70vh">
+    <Container
+      maxW="container.lg"
+      p={3}
+      marginTop={100}
+      paddingBottom={100}
+      as="main"
+      minH="70vh"
+    >
       <Text marginBottom={8} style={{ fontSize: "30px" }}>
         <b>Novo</b> Dashboard
       </Text>
@@ -219,6 +228,8 @@ const Home = () => {
         </Table>
       </TableContainer>
       <Spenditures />
+      <YourClaimsAgainstOthers />
+      <ClaimsOpenAgainstYou />
     </Container>
   );
 };

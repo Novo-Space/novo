@@ -55,3 +55,15 @@ export const Copiable = ({
     </p>
   );
 };
+
+export const statusToText = (status: number) => {
+  if (status == 0) {
+    return "Awaiting Probable Cause";
+  } else if (status == 1) {
+    return "Awaiting Verdict";
+  } else if (status == 2) {
+    return "Reversal Request Accepted";
+  } else {
+    return "Reversal Request Denied";
+  }
+};

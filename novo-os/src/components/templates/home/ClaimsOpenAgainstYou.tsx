@@ -1,6 +1,5 @@
 import {
   Heading,
-  IconButton,
   Table,
   TableCaption,
   TableContainer,
@@ -16,13 +15,16 @@ import {
 // import "erc20";
 import { RiWallet3Line } from "react-icons/ri";
 import { NUSDC_ADDRESS } from "utils/config";
-import { formatAddress, parseBigTokenToNumber, zip } from "utils/helpers";
+import {
+  Copiable,
+  formatAddress,
+  parseBigTokenToNumber,
+  zip,
+} from "utils/helpers";
 import { useAccount, useBlockNumber, useContractReads } from "wagmi";
 import werc20 from "../../../abis/wERC20.json";
 
 import { InfoOutlineIcon } from "@chakra-ui/icons";
-import { prepareWriteContract, writeContract } from "@wagmi/core";
-import { SlLoop } from "react-icons/sl";
 
 const tokenList = [
   // Novo tokens
@@ -37,38 +39,44 @@ const tokenList = [
   },
 ];
 
-const Spenditures = () => {
+const ClaimsOpenAgainstYou = () => {
   const { address } = useAccount();
   const { data: blockNumber } = useBlockNumber({ watch: true });
 
   const readContracts = tokenList.map((token: any) => ({
     address: token.address,
     abi: werc20.abi,
-    functionName: "getSpenditures",
-    args: [blockNumber && Math.trunc(blockNumber / 1000), address],
+    functionName: "getDebtIMayOwe",
+    args: [address],
   }));
 
   // balance INFO
   const {
-    data: spendituresData,
-    isError: spendituresIsError,
-    isLoading: spendituresIsLoading,
-    error: spendituresError,
+    data: debtIMayOweData,
+    isError: debtIMayOweIsError,
+    isLoading: debtIMayOweIsLoading,
+    error: debtIMayOweError,
   } = useContractReads({
     contracts: readContracts,
     watch: true,
   });
 
-  const flattenedSpenditureData = spendituresData
-    ? zip(spendituresData, tokenList).flatMap(
-        ([spenditures, ti]: [any, any]) => {
-          return spenditures
-            ? spenditures.map((spenditure: any, index: number) => {
-                const [from, to, amount, blockNumber] = spenditure;
+  console.log("DEBT I MAY OWE DATA");
+  console.log(debtIMayOweData);
+  console.log(debtIMayOweIsError, debtIMayOweError);
+
+  const flattenedSpenditureData = debtIMayOweData
+    ? zip(debtIMayOweData, tokenList).flatMap(
+        ([debtIMayOwes, ti]: [any, any]) => {
+          return debtIMayOwes
+            ? debtIMayOwes.map((debtIMayOwe: any, index: number) => {
+                const [from, to, amount, claimID, status] = debtIMayOwe;
                 return {
                   from,
                   to,
                   amount,
+                  claimID,
+                  status,
                   blockNumber,
                   index,
                   ti,
@@ -78,44 +86,6 @@ const Spenditures = () => {
         }
       )
     : [];
-
-  // const {
-  //   config: requestReversalConfig,
-  //   isError: requestReversalIsError,
-  //   error: requestReversalError,
-  // } = usePrepareContractWrite({
-  //   address: debouncedAssetAddress,
-  //   abi: erc20.abi,
-  //   functionName: "requestReversal",
-  //   args: [config.novoBridge, decimalAdjustedDebouncedAmount],
-  // });
-
-  // console.log("requestReversal INFO", requestReversalIsError, requestReversalError);
-
-  // const { write: writerequestReversal } = useContractWrite({
-  //   ...requestReversalConfig,
-  //   onSuccess() {
-  //     // Bridge the token
-  //     console.log(`WRITE: ${write}`);
-  //     write?.();
-  //   },
-  // });
-
-  const requestReversalSteps = async (
-    tokenAddress: string,
-    epoch: number,
-    from: string,
-    index: number
-  ) => {
-    const requestReversalConfig = await prepareWriteContract({
-      address: tokenAddress,
-      abi: werc20.abi,
-      functionName: "requestRevert",
-      args: [epoch, from, index],
-    });
-    const data = await writeContract(requestReversalConfig);
-    console.log(data);
-  };
 
   return (
     <TableContainer
@@ -133,8 +103,10 @@ const Spenditures = () => {
         }}
       >
         <RiWallet3Line style={{ fontSize: "20px", marginRight: "6px" }} />
-        <Text style={{ fontWeight: "bold" }}>Your Outbound Transactions</Text>
-        <Tooltip label="This table shows your Novo token outflows and is helpful for monitoring for suspicious activity">
+        <Text style={{ fontWeight: "bold" }}>
+          Claims of Others Open Against You With Probable Cause
+        </Text>
+        <Tooltip label="This table shows open claims against you for which probable cause has been established and further investigation is underway. The assets associated with this claim are frozen until a verdict is reached.">
           <InfoOutlineIcon style={{ marginLeft: "6px" }} />
         </Tooltip>
       </div>
@@ -145,33 +117,45 @@ const Spenditures = () => {
             <Th>From</Th>
             <Th>To</Th>
             <Th isNumeric>Amount</Th>
-            <Th isNumeric>Epoch</Th>
-            <Th isNumeric>Spenditure ID</Th>
-            <Th isNumeric>Request Reversal</Th>
+            <Th isNumeric>Claim ID</Th>
+            <Th isNumeric>Status</Th>
           </Tr>
         </Thead>
         <Tbody>
           {flattenedSpenditureData.length != 0 &&
             flattenedSpenditureData.map(
-              ({ from, to, amount, blockNumber, index, ti }: any) => {
-                const epoch = Math.trunc(blockNumber.toNumber() / 1000);
+              ({
+                from,
+                to,
+                amount,
+                claimID,
+                status,
+                blockNumber,
+                index,
+                ti,
+              }: any) => {
                 return (
                   <Tr>
                     <Th>{ti.name}</Th>
                     <Th>{formatAddress(from)}</Th>
                     <Th>{formatAddress(to)}</Th>
                     <Th isNumeric>{parseBigTokenToNumber(amount, ti)}</Th>
-                    <Th isNumeric>{epoch}</Th>
-                    <Th isNumeric>{index}</Th>
+                    {/* <Th isNumeric>
+                      {Math.trunc(blockNumber.toNumber() / 1000)}
+                    </Th> */}
                     <Th isNumeric>
+                      <Copiable
+                        display={formatAddress(claimID)}
+                        copy={claimID}
+                      />
+                    </Th>
+                    <Th isNumeric>{status.toNumber()}</Th>
+                    {/* <Th isNumeric>
                       <IconButton
                         aria-label="Request Reversal Button"
                         icon={<SlLoop />}
-                        onClick={() =>
-                          requestReversalSteps(ti.address, epoch, from, index)
-                        }
                       />
-                    </Th>
+                    </Th> */}
                   </Tr>
                 );
               }
@@ -187,4 +171,4 @@ const Spenditures = () => {
   );
 };
 
-export default Spenditures;
+export default ClaimsOpenAgainstYou;

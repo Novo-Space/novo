@@ -52,22 +52,22 @@ const Freeze = () => {
     reverseWrite?.();
   };
 
-  // const { config: rejectReverseConfig } = usePrepareContractWrite({
-  //   address: debouncedAssetAddress,
-  //   abi: werc20.abi,
-  //   functionName: "rejectReverse",
-  //   args: [claimID],
-  // });
+  const { config: rejectReverseConfig } = usePrepareContractWrite({
+    address: debouncedAssetAddress,
+    abi: werc20.abi,
+    functionName: "rejectReverse",
+    args: [claimID],
+  });
 
-  // const { write: rejectReverseWrite } = useContractWrite({
-  //   ...rejectReverseConfig,
-  // });
+  const { write: rejectReverseWrite } = useContractWrite({
+    ...rejectReverseConfig,
+  });
 
-  // const rejectReverseSteps = () => {
-  //   // // Approve token for bridging
-  //   console.log("REJECT REVERSE");
-  //   rejectReverseWrite?.();
-  // };
+  const rejectReverseSteps = () => {
+    // // Approve token for bridging
+    console.log("REJECT REVERSE");
+    rejectReverseWrite?.();
+  };
 
   return (
     <Card
@@ -118,7 +118,7 @@ const Freeze = () => {
           <Button
             variant="solid"
             colorScheme="blue"
-            // onClick={() => rejectReverseSteps()}
+            onClick={() => rejectReverseSteps()}
           >
             Reject Reverse
           </Button>

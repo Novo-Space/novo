@@ -14,7 +14,7 @@ const Home = () => {
           <b>Novo</b> Admin Panel
         </Text>
 
-        <SimpleGrid columns={2} spacing={16}>
+        <SimpleGrid columns={2} spacing={0}>
           <Freeze />
           <Judge />
         </SimpleGrid>

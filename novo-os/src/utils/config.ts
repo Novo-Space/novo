@@ -32,8 +32,8 @@ import { ConfigKey } from "types";
 //   configByDeployMode[deployMode as DeployMode];
 
 // Update when redeploying bridge and nusdc
-export const NOVO_BRIDGE_ADDRESS = "0xfcfe742e19790dd67a627875ef8b45f17db1dac6";
-export const NUSDC_ADDRESS = "0xfE2e300a1c55E902B517F181AE4AefaF029716CC";
+export const NOVO_BRIDGE_ADDRESS = "0x3E661784267F128e5f706De17Fac1Fc1c9d56f30";
+export const NUSDC_ADDRESS = "0x1FeF63AA8d7A99Ad9B68A7e42F85E75F689d9852";
 export const FAUCET_ADDRESS = "0x25c0a2f0a077f537bd11897f04946794c2f6f1ef";
 
 export const config: Record<ConfigKey, any> = {
