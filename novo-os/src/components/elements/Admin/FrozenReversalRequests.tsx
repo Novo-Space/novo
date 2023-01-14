@@ -32,7 +32,7 @@ import {
 const tokenList = [
   // Novo tokens
   {
-    name: "N-USD Coin",
+    name: "N-USDC",
     address: NUSDC_ADDRESS,
     symbol: "N-USDC",
     decimals: 6,

@@ -27,7 +27,7 @@ import { SlLoop } from "react-icons/sl";
 const tokenList = [
   // Novo tokens
   {
-    name: "N-USD Coin",
+    name: "N-USDC",
     address: NUSDC_ADDRESS,
     symbol: "N-USDC",
     decimals: 6,
@@ -145,8 +145,8 @@ const Spenditures = () => {
             <Th>From</Th>
             <Th>To</Th>
             <Th isNumeric>Amount</Th>
-            <Th isNumeric>Epoch</Th>
-            <Th isNumeric>Spenditure ID</Th>
+            {/* <Th isNumeric>Epoch</Th>
+            <Th isNumeric>Spenditure ID</Th> */}
             <Th isNumeric>Request Reversal</Th>
           </Tr>
         </Thead>
@@ -161,8 +161,8 @@ const Spenditures = () => {
                     <Th>{formatAddress(from)}</Th>
                     <Th>{formatAddress(to)}</Th>
                     <Th isNumeric>{parseBigTokenToNumber(amount, ti)}</Th>
-                    <Th isNumeric>{epoch}</Th>
-                    <Th isNumeric>{index}</Th>
+                    {/* <Th isNumeric>{epoch}</Th>
+                    <Th isNumeric>{index}</Th> */}
                     <Th isNumeric>
                       <IconButton
                         aria-label="Request Reversal Button"

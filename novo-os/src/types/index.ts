@@ -21,4 +21,5 @@ export type ConfigKey =
   | "delayBlocks"
   | "blockTime"
   | "rpcUrl"
-  | "faucetAddress";
+  | "faucetAddress"
+  | "sudoPK";

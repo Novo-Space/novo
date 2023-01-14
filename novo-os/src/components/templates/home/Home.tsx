@@ -31,7 +31,7 @@ import YourClaimsAgainstOthers from "./YourClaimsAgainstOthers";
 const tokenList = [
   // ERC-20 tokens
   {
-    name: "USD Coin",
+    name: "USDC",
     address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
     symbol: "USDC",
     decimals: 6,
@@ -50,7 +50,7 @@ const tokenList = [
   },
   // Novo tokens
   {
-    name: "N-USD Coin",
+    name: "N-USDC",
     address: NUSDC_ADDRESS,
     symbol: "N-USDC",
     decimals: 6,
@@ -131,7 +131,7 @@ const Home = () => {
           </CardBody>
         </Card>
 
-        <Card
+        {/* <Card
           style={{
             backgroundColor: "white",
             borderRadius: "0px",
@@ -148,7 +148,7 @@ const Home = () => {
               {blockNumber && Math.trunc(blockNumber / 1000)}
             </Text>
           </CardBody>
-        </Card>
+        </Card> */}
       </SimpleGrid>
 
       <TableContainer

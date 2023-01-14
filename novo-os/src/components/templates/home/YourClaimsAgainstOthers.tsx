@@ -30,7 +30,7 @@ import { InfoOutlineIcon } from "@chakra-ui/icons";
 const tokenList = [
   // Novo tokens
   {
-    name: "N-USD Coin",
+    name: "N-USDC",
     address: NUSDC_ADDRESS,
     symbol: "N-USDC",
     decimals: 6,
@@ -104,9 +104,9 @@ const YourClaimsAgainstOthers = () => {
       >
         <RiWallet3Line style={{ fontSize: "20px", marginRight: "6px" }} />
         <Text style={{ fontWeight: "bold" }}>
-          Your Claims Open Against Others
+          Your Requests to Reclaim Money From Others
         </Text>
-        <Tooltip label="This table shows claims you've opened against others for which probable cause has been established and further investigation is underway. The assets associated with this claim are frozen until a verdict is reached.">
+        <Tooltip label="This table shows requests you've made to reclaim money from others for an erroneous transaction. The status column indicates whether the request is waiting for probable cause, waiting for a verdict, has been accepted, or has been rejected.">
           <InfoOutlineIcon style={{ marginLeft: "6px" }} />
         </Tooltip>
       </div>
@@ -114,10 +114,11 @@ const YourClaimsAgainstOthers = () => {
         <Thead>
           <Tr style={{ borderTop: "1px solid rgb(237, 242, 247)" }}>
             <Th>Token</Th>
-            <Th>From</Th>
-            <Th>To</Th>
+            <Th>Reclaiming Money From</Th>
+            {/* <Th>From</Th>
+            <Th>To</Th> */}
             <Th isNumeric>Amount</Th>
-            <Th isNumeric>Claim ID</Th>
+            {/* <Th isNumeric>Claim ID</Th> */}
             <Th isNumeric>Status</Th>
           </Tr>
         </Thead>
@@ -137,18 +138,20 @@ const YourClaimsAgainstOthers = () => {
                 return (
                   <Tr>
                     <Th>{ti.name}</Th>
-                    <Th>{formatAddress(from)}</Th>
-                    <Th>{formatAddress(to)}</Th>
+                    {/* <Th>{formatAddress(from)}</Th> */}
+                    <Th>
+                      <Copiable display={formatAddress(from)} copy={from} />
+                    </Th>
                     <Th isNumeric>{parseBigTokenToNumber(amount, ti)}</Th>
                     {/* <Th isNumeric>
                       {Math.trunc(blockNumber.toNumber() / 1000)}
                     </Th> */}
-                    <Th isNumeric>
+                    {/* <Th isNumeric>
                       <Copiable
                         display={formatAddress(claimID)}
                         copy={claimID}
                       />
-                    </Th>
+                    </Th> */}
                     <Th isNumeric>{statusToText(status.toNumber())}</Th>
                     {/* <Th isNumeric>
                       <IconButton

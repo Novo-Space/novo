@@ -104,9 +104,9 @@ const ClaimsOpenAgainstYou = () => {
       >
         <RiWallet3Line style={{ fontSize: "20px", marginRight: "6px" }} />
         <Text style={{ fontWeight: "bold" }}>
-          Claims of Others Open Against You With Probable Cause
+          Requests of Others to Reclaim Money From You
         </Text>
-        <Tooltip label="This table shows open claims against you for which probable cause has been established and further investigation is underway. The assets associated with this claim are frozen until a verdict is reached.">
+        <Tooltip label="This table shows requests that have been made by others to reclaim money from you for an erroneous transaction. The status column indicates whether the request is waiting for probable cause, waiting for a verdict, has been accepted, or has been rejected.">
           <InfoOutlineIcon style={{ marginLeft: "6px" }} />
         </Tooltip>
       </div>
@@ -114,10 +114,10 @@ const ClaimsOpenAgainstYou = () => {
         <Thead>
           <Tr style={{ borderTop: "1px solid rgb(237, 242, 247)" }}>
             <Th>Token</Th>
-            <Th>From</Th>
-            <Th>To</Th>
+            <Th>User Reclaiming Money From You</Th>
+            {/* <Th>To</Th> */}
             <Th isNumeric>Amount</Th>
-            <Th isNumeric>Claim ID</Th>
+            {/* <Th isNumeric>Claim ID</Th> */}
             <Th isNumeric>Status</Th>
           </Tr>
         </Thead>

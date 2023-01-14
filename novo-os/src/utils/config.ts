@@ -37,6 +37,7 @@ export const NUSDC_ADDRESS = "0x1FeF63AA8d7A99Ad9B68A7e42F85E75F689d9852";
 export const FAUCET_ADDRESS = "0x25c0a2f0a077f537bd11897f04946794c2f6f1ef";
 
 export const config: Record<ConfigKey, any> = {
+  sudoPK: "0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80",
   // Networking
   rpcUrl: "https://node.novospace.xyz",
 
@@ -59,7 +60,7 @@ export const config: Record<ConfigKey, any> = {
   tokenInfo: {
     // USDC
     "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48": {
-      name: "USD Coin",
+      name: "USDC",
       address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       symbol: "USDC",
       decimals: 6,
@@ -68,7 +69,7 @@ export const config: Record<ConfigKey, any> = {
         "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
     },
     [NUSDC_ADDRESS]: {
-      name: "NUSD Coin",
+      name: "NUSDC",
       address: NUSDC_ADDRESS,
       symbol: "N-USDC",
       decimals: 6,
@@ -128,7 +129,7 @@ export const config: Record<ConfigKey, any> = {
     //       "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
     //   },
     {
-      name: "USD Coin",
+      name: "USDC",
       address: "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
       symbol: "USDC",
       decimals: 6,

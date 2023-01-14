@@ -1,4 +1,4 @@
-import { IconButton } from "@chakra-ui/react";
+import { IconButton, useToast } from "@chakra-ui/react";
 import { BigNumber } from "ethers";
 import "react";
 import { FiCopy } from "react-icons/fi";
@@ -42,11 +42,22 @@ export const Copiable = ({
   copy: string;
   display: string;
 }) => {
+  const toast = useToast();
   return (
     <p>
       {display}
       <IconButton
-        onClick={() => navigator.clipboard.writeText(copy)}
+        onClick={() => {
+          navigator.clipboard.writeText(copy);
+
+          toast({
+            title: "Copied to clipboard",
+            // description: "You successfully bridged funds into Novo Space",
+            status: "success",
+            duration: 50000,
+            isClosable: true,
+          });
+        }}
         aria-label="Request Reversal Button"
         icon={<FiCopy />}
         style={{ marginLeft: "6px" }}
