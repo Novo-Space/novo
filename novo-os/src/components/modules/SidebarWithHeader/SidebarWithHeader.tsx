@@ -24,13 +24,13 @@ import { AiOutlineBank, AiOutlineSwap } from "react-icons/ai";
 import { FaFaucet } from "react-icons/fa";
 import { FiHome, FiMenu } from "react-icons/fi";
 import { GiInjustice } from "react-icons/gi";
-import { HiOutlineHandRaised } from "react-icons/hi2";
 import { ImEnter, ImExit } from "react-icons/im";
 import {
   MdLockOutline,
   MdOutlineConstruction,
   MdOutlineSavings,
 } from "react-icons/md";
+import { SiReadthedocs } from "react-icons/si";
 // import { useGlobalContext } from "../common/globalState";
 
 // interface LinkItemProps {
@@ -95,22 +95,23 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
   const courtNav: [string, string, IconType][] = [
     ["Admin Panel", "/admin/panel", GiInjustice],
-    [
-      "Open Reversal Request",
-      "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
-      HiOutlineHandRaised,
-    ],
-    [
-      "Latest Reversal Hearings",
-      "https://novaspace.discourse.group/c/reversal-requests/5",
-      GiInjustice,
-    ],
+    ["Docs", "https://novo-2.gitbook.io/novo/", SiReadthedocs],
+    // [
+    //   "Open Reversal Request",
+    //   "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
+    //   HiOutlineHandRaised,
+    // ],
+    // [
+    //   "Latest Reversal Hearings",
+    //   "https://novaspace.discourse.group/c/reversal-requests/5",
+    //   GiInjustice,
+    // ],
   ];
   const navSections: [string, [string, string, IconType][]][] = [
     ["General", generalNav],
     ["Bridge", bridgeNav],
     ["Defi", defiNav],
-    ["Court", courtNav],
+    ["Misc", courtNav],
   ];
 
   return (
