@@ -124,32 +124,46 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
       pos="fixed"
       h="full"
       {...rest}
+      style={{ overflow: "hidden" }}
     >
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Novo OS
-        </Text>
-        <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
-      </Flex>
-      {navSections.map(([sectionName, section]) => (
-        <div key={sectionName}>
-          <Text
-            style={{
-              margin: "30px 0 10px 30px",
-              fontSize: "12px",
-              textTransform: "uppercase",
-              letterSpacing: "1px",
-            }}
-          >
-            {sectionName}
+      <div
+        style={{
+          overflowY: "scroll",
+          height: "100%",
+          width: "100%",
+          paddingRight: "17px",
+          boxSizing: "content-box",
+        }}
+      >
+        <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
+          <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+            Novo OS
           </Text>
-          {section.map(([name, route, e]) => (
-            <NavItem key={name} icon={e} href={route}>
-              {name}
-            </NavItem>
-          ))}
-        </div>
-      ))}
+          <CloseButton
+            display={{ base: "flex", md: "none" }}
+            onClick={onClose}
+          />
+        </Flex>
+        {navSections.map(([sectionName, section]) => (
+          <div key={sectionName}>
+            <Text
+              style={{
+                margin: "30px 0 10px 30px",
+                fontSize: "12px",
+                textTransform: "uppercase",
+                letterSpacing: "1px",
+              }}
+            >
+              {sectionName}
+            </Text>
+            {section.map(([name, route, e]) => (
+              <NavItem key={name} icon={e} href={route}>
+                {name}
+              </NavItem>
+            ))}
+          </div>
+        ))}
+      </div>
     </Box>
   );
 };
