@@ -113,8 +113,8 @@ const FrozenReversalRequests = () => {
                 ] = event.args!;
                 const matchedDebt = debtIMayOwesObject[from].find(
                   (debt: any) => {
-                    const [debtFrom, to, amount, claimID, status] = debt;
-                    return from == to;
+                    const [debtFrom, to, amount, debtClaimID, status] = debt;
+                    return claimId == debtClaimID;
                   }
                 );
                 console.log("MATCHED DEBT");
