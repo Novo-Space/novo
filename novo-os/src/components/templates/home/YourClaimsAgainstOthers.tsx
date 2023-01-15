@@ -66,8 +66,8 @@ const YourClaimsAgainstOthers = () => {
   console.log(debtIMayGetData);
 
   const flattenedSpenditureData = debtIMayGetData
-    ? zip(debtIMayGetData, tokenList).flatMap(
-        ([debtIMayGets, ti]: [any, any]) => {
+    ? zip(debtIMayGetData, tokenList)
+        .flatMap(([debtIMayGets, ti]: [any, any]) => {
           return debtIMayGets
             ? debtIMayGets.map((debtIMayGet: any, index: number) => {
                 const [from, to, amount, claimID, status] = debtIMayGet;
@@ -83,8 +83,8 @@ const YourClaimsAgainstOthers = () => {
                 };
               })
             : [];
-        }
-      )
+        })
+        .reverse()
     : [];
 
   return (

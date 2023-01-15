@@ -60,8 +60,8 @@ const Spenditures = () => {
   });
 
   const flattenedSpenditureData = spendituresData
-    ? zip(spendituresData, tokenList).flatMap(
-        ([spenditures, ti]: [any, any]) => {
+    ? zip(spendituresData, tokenList)
+        .flatMap(([spenditures, ti]: [any, any]) => {
           return spenditures
             ? spenditures.map((spenditure: any, index: number) => {
                 const [from, to, amount, blockNumber] = spenditure;
@@ -75,8 +75,8 @@ const Spenditures = () => {
                 };
               })
             : [];
-        }
-      )
+        })
+        .reverse()
     : [];
 
   // const {

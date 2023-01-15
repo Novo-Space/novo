@@ -133,7 +133,7 @@ const FrozenReversalRequests = () => {
         ).flat();
 
         console.log(queriedEvents);
-        setAllEvents(queriedEvents);
+        setAllEvents(queriedEvents.reverse());
       }
     };
 
