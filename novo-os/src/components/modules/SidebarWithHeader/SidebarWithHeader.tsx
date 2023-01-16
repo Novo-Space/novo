@@ -95,7 +95,7 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
 
   const courtNav: [string, string, IconType][] = [
     ["Admin Panel", "/admin/panel", GiInjustice],
-    ["Docs", "https://novo-2.gitbook.io/novo/", SiReadthedocs],
+    ["Docs", "https://docs.novospace.xyz", SiReadthedocs],
     // [
     //   "Open Reversal Request",
     //   "https://novaspace.discourse.group/t/about-the-reversal-requests-category-how-to-open-a-reversal-request/11",
